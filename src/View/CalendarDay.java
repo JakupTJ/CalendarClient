@@ -1,5 +1,12 @@
 package View;
 
-public class CalendarDay {
+import javax.swing.JPanel;
+
+public class CalendarDay extends JPanel{
+	
+	
+	public CalendarDay () {
+		
+	}
 
 }

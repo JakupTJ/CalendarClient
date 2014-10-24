@@ -12,16 +12,18 @@ public class Screen extends JFrame {
 	public static final String CALENDARDAY = "calendarDay";
 	public static final String CALENDARWEEK = "calendarWeek";
 
-	private CalendarDay calendarDay;
-	private CalendarWeek calendarWeek;
 	private JPanel contentPane;
 	private CardLayout cl;
+	private CalendarDay calendarDay;
+	private CalendarWeek calendarWeek;
+	
 
 	// no-argument constructor
 	public Screen() {
 		setSize(WIDTH, HEIGHT);
 
 		// adding the contentPane
+		
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(new CardLayout(0, 0));
@@ -34,8 +36,8 @@ public class Screen extends JFrame {
 
 		// adding JPanels
 
-		contentPane.add(calendarDay);
-		contentPane.add(calendarWeek);
+		contentPane.add(calendarDay, CALENDARDAY);
+		contentPane.add(calendarWeek, CALENDARWEEK);
 
 	}
 

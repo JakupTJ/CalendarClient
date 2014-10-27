@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-import View.Screen;
+import view.Screen;
 
 public class Main {
 

@@ -1,8 +1,11 @@
 package view;
 
 import java.awt.CardLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import controller.ActionController;
 
 public class Screen extends JFrame {
 
@@ -12,6 +15,7 @@ public class Screen extends JFrame {
 	public static final String CALENDARDAY = "calendarDay";
 	public static final String CALENDARWEEK = "calendarWeek";
 
+	private ActionController actionController;
 	private JPanel contentPane;
 	private CardLayout cl;
 	private CalendarDay calendarDay;
@@ -20,7 +24,8 @@ public class Screen extends JFrame {
 
 	// no-argument constructor
 	public Screen() {
-		setSize(WIDTH, HEIGHT);
+		actionController = new ActionController(this);
+		setSize(WITDH,HEIGHT);
 
 		// adding the contentPane
 		
@@ -31,26 +36,27 @@ public class Screen extends JFrame {
 
 		// Objects of JPanels
 
-		calendarDay = new CalendarDay();
+		
 		calendarWeek = new CalendarWeek();
-
+		calendarDay = new CalendarDay();
+		
 		// adding JPanels
 
-		contentPane.add(calendarDay, CALENDARDAY);
 		contentPane.add(calendarWeek, CALENDARWEEK);
+		contentPane.add(calendarDay, CALENDARDAY);
 
 	}
 
-	public void Show(String card) {
+	public void show(String card) {
 		cl.show(getContentPane(), card);
-	}
-
-	public CalendarDay getCalendarDay() {
-		return calendarDay;
 	}
 
 	public CalendarWeek getCalendarWeek() {
 		return calendarWeek;
+	}
+	
+	public CalendarDay getCalendarDay() {
+		return calendarDay;
 	}
 
 }

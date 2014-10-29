@@ -7,7 +7,10 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Screen screen = new Screen();
-		screen.setVisible(true);
-		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		screen.setTitle("CBScalendar");
+        screen.setLocationRelativeTo(null);
+        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        screen.setVisible(true);
 	}
 }

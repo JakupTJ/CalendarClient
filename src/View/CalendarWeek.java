@@ -1,40 +1,69 @@
 package view;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 public class CalendarWeek extends JPanel {
 
 	JPanel pane;
-	JPanel calendarPane;
-	JPanel weeknumber;
-	JButton btnNext;
-	JButton btnBack;
+	JPanel calendarPanel;
+	JPanel timePanel;
+	JLabel dateColumn;
+	JLabel weekColumn;
+	JLabel timeColumn;
 
 	public CalendarWeek() {
-
-		setLayout(null);
 		setSize(Screen.WITDH, Screen.HEIGHT);
+		// Setting JPanel to Gridlayout
+		 new JPanel(new BorderLayout());
+		 setLayout(new GridLayout(0, 7));
+		 Border border = BorderFactory.createLineBorder(Color.black);
+		 setBorder(border);
 
-		pane = new JPanel();
-		pane.setBounds(12, 12, 376, 376);
-		add(pane);
+		// Headers
+		calendarPanel = new JPanel(new BorderLayout());
+		calendarPanel.setLayout(new GridLayout(0, 7));
+		String[] headers = { "Monday", "Tuesday", "Wednesday", "Tuesday",
+				"Friday", "Saturday", "Sunday" };
 
-		btnNext = new JButton("Next");
-		btnNext.setBounds(266, 12, 98, 26);
-		add(btnNext);
+		for (String header : headers) {
+			add(weekColumn = new JLabel(header));
+		}
+		// Add days to calendar
+		for (int i = 1; i < 31; i++) {
+			add(dateColumn = new JLabel("" + i));
+			dateColumn.setBorder(border);
+		}
 
-		weeknumber = new JPanel();
-		weeknumber.setBounds(114, 12, 145, 32);
-		add(weeknumber);
+		// Add calendar to main panel
+		pane = new JPanel(new BorderLayout());
+		pane.add(new JTextField("\t\t\t04/2014"), BorderLayout.NORTH);
+		pane.add(this, BorderLayout.CENTER);
 
-		btnBack = new JButton("Previous");
-		btnBack.setBounds(12, 12, 98, 26);
-		add(btnBack);
-
-		calendarPane = new JPanel();
-		calendarPane.setBounds(12, 56, 352, 276);
-		add(calendarPane);
+		// // Panel with hours of the day
+		// timePanel = new JPanel(new BorderLayout());
+		// setLayout(new GridLayout(0,1));
+		//
+		// String[] timeStamp = {"08:00", "09:00", "10:00"};
+		//
+		// for (String ts : timeStamp) {
+		// timePanel.add(timeColumn = new JLabel(ts));
+		// }
+		//
+		// pane.add(timePanel,BorderLayout.WEST);
 
 	}
 }

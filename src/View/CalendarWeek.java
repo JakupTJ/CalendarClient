@@ -31,7 +31,6 @@ public class CalendarWeek extends JPanel {
 		 new JPanel(new BorderLayout());
 		 setLayout(new GridLayout(0, 7));
 		 Border border = BorderFactory.createLineBorder(Color.black);
-		 setBorder(border);
 
 		// Headers
 		calendarPanel = new JPanel(new BorderLayout());
@@ -40,18 +39,18 @@ public class CalendarWeek extends JPanel {
 				"Friday", "Saturday", "Sunday" };
 
 		for (String header : headers) {
-			add(weekColumn = new JLabel(header));
+			calendarPanel.add(weekColumn = new JLabel(header));
 		}
 		// Add days to calendar
-		for (int i = 1; i < 31; i++) {
-			add(dateColumn = new JLabel("" + i));
+		for (int i = 1; i <= 7; i++) {
+			calendarPanel.add(dateColumn = new JLabel("" + i));
 			dateColumn.setBorder(border);
 		}
 
 		// Add calendar to main panel
 		pane = new JPanel(new BorderLayout());
 		pane.add(new JTextField("\t\t\t04/2014"), BorderLayout.NORTH);
-		pane.add(this, BorderLayout.CENTER);
+		pane.add(calendarPanel, BorderLayout.CENTER);
 
 		// // Panel with hours of the day
 		// timePanel = new JPanel(new BorderLayout());

@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import java.awt.FlowLayout;
 
 public class CalendarWeek extends JPanel {
 
@@ -27,13 +28,10 @@ public class CalendarWeek extends JPanel {
 
 	public CalendarWeek() {
 		setSize(Screen.WITDH, Screen.HEIGHT);
-		// Setting JPanel to Gridlayout
-		 new JPanel(new BorderLayout());
-		 setLayout(new GridLayout(0, 7));
 		 Border border = BorderFactory.createLineBorder(Color.black);
 
 		// Headers
-		calendarPanel = new JPanel(new BorderLayout());
+		calendarPanel = new JPanel(new FlowLayout());
 		calendarPanel.setLayout(new GridLayout(0, 7));
 		String[] headers = { "Monday", "Tuesday", "Wednesday", "Tuesday",
 				"Friday", "Saturday", "Sunday" };
@@ -49,8 +47,10 @@ public class CalendarWeek extends JPanel {
 
 		// Add calendar to main panel
 		pane = new JPanel(new BorderLayout());
+		pane.setLayout(new FlowLayout());
 		pane.add(new JTextField("\t\t\t04/2014"), BorderLayout.NORTH);
 		pane.add(calendarPanel, BorderLayout.CENTER);
+		
 
 		// // Panel with hours of the day
 		// timePanel = new JPanel(new BorderLayout());

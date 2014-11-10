@@ -18,6 +18,7 @@ public class Screen extends JFrame {
 	private ActionController actionController;
 	private JPanel contentPane;
 	private CardLayout cl;
+//	private Calendar calendar;
 	private CalendarDay calendarDay;
 	private CalendarWeek calendarWeek;
 	
@@ -36,7 +37,6 @@ public class Screen extends JFrame {
 
 		// Objects of JPanels
 
-		
 		calendarWeek = new CalendarWeek();
 		calendarDay = new CalendarDay();
 		

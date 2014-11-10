@@ -1,16 +1,12 @@
 package controller;
 
 public class NotesController {
-	
-	
-	public NotesController() {
-		
-	}
-	
 
-	public String UpdateNote() {
-		String note;
-		note = shared.ObjectTranslator.GetNote();
-		return note;
+	public NotesController() {
+
+	}
+
+	public void setNote(String note) {
+		shared.ObjectTranslator.setNote(note);
 	}
 }

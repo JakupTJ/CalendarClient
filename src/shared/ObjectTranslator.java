@@ -7,17 +7,21 @@ import controller.ClientController;
 
 public class ObjectTranslator {
 	
-	ClientController nc = new ClientController();
+	ClientController cc = new ClientController();
 	
 	public ObjectTranslator() {
 		
 	}
 
-	String obj = nc.setNote(note);
+	String obj = cc.setNote(note);
 	
 	
 	Gson gson = new GsonBuilder().create();
 	
 	String gsonString = gson.toJson(obj);
+
+	public void setNote(String note) {	
+		
+	}
 
 }

@@ -24,9 +24,10 @@ public class ActionController implements ActionListener {
 		}
 		
 		else if (cmd.equals(login.LOGINSUBMIT)) {
-			username = screen.getLogin.getTxtEmail.getText();
-			password = screen.getLogin.getTxtpassword.getText();
-			cc.checklog(username, password);
+			String username = screen.getLogin.getTxtEmail.getText();
+			String password = screen.getLogin.getTxtpassword.getText();
+			cc.checkLog(username, password);
+			cc.getForecast();
 		}
 		
 		else if (cmd.equals(arg0))

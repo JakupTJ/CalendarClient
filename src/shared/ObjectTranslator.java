@@ -3,11 +3,11 @@ package shared;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import controller.NotesController;
+import controller.ClientController;
 
 public class ObjectTranslator {
 	
-	NotesController nc = new NotesController();
+	ClientController nc = new ClientController();
 	
 	public ObjectTranslator() {
 		

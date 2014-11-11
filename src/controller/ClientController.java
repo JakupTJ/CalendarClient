@@ -1,8 +1,8 @@
 package controller;
 
-public class NotesController {
+public class ClientController {
 
-	public NotesController() {
+	public ClientController() {
 
 	}
 

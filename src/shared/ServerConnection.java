@@ -1,5 +1,77 @@
 package shared;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 public class ServerConnection {
 
+	private Socket clientSocket;
+	private DataOutputStream outToServer;
+	
+	
+	public void Connect() {
+		try {
+			clientSocket = new Socket("localhost", 7000);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			outToServer = new DataOutputStream(
+					clientSocket.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void Send(String gsonString) {
+		byte[] encrypted = Encryption(gsonString);
+		try {
+			outToServer.write(encrypted);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			outToServer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public String Recieve() {
+		BufferedReader inFromServer = null;
+		try {
+			inFromServer = new BufferedReader(new InputStreamReader(
+					clientSocket.getInputStream()));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String modifiedSentence = null;
+		try {
+			modifiedSentence = inFromServer.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return modifiedSentence;
+	}
+	
+	public byte[] Encryption (String gsonString) {
+		byte[] input = gsonString.getBytes();
+		byte key = (byte) Double.parseDouble("3.014");
+		byte[] encrypted = input;
+		for (int i = 0; i < encrypted.length; i++)
+			encrypted[i] = (byte) (encrypted[i] ^ key);
+		return encrypted;
+	}
 }

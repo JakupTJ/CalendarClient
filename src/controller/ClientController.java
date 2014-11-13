@@ -11,20 +11,20 @@ public class ClientController {
 
 	}
 
-	public void setNote(String note) {
-		ot.setNote(note);
-	}
-
+//	public void setNote(String note) {
+//		ot.setNote(note);
+//	}
+////
 	public String checkLog(String username, String password) {
 		String log;
 		log = ot.checkLog(username, password);
 		return log;
 	}
-
-	public String getForecast() {
-		String fc;
-		fc = ot.getForecast();
-		return fc;
-		
-	}
+//
+//	public String getForecast() {
+//		String fc;
+//		fc = ot.getForecast();
+//		return fc;
+//		
+//	}
 }

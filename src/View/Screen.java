@@ -14,11 +14,13 @@ public class Screen extends JFrame {
 
 	public static final String CALENDARDAY = "calendarDay";
 	public static final String CALENDARWEEK = "calendarWeek";
+	public static final String LOGIN = "login";
 
 	private ActionController actionController;
 	private JPanel contentPane;
 	private CardLayout cl;
 //	private Calendar calendar;
+	private Login login;
 	private CalendarDay calendarDay;
 	private CalendarWeek calendarWeek;
 	
@@ -37,11 +39,13 @@ public class Screen extends JFrame {
 
 		// Objects of JPanels
 
+		login = new Login(actionController);
 		calendarWeek = new CalendarWeek();
 		calendarDay = new CalendarDay();
 		
 		// adding JPanels
 
+		contentPane.add(login, LOGIN);
 		contentPane.add(calendarWeek, CALENDARWEEK);
 		contentPane.add(calendarDay, CALENDARDAY);
 
@@ -57,6 +61,10 @@ public class Screen extends JFrame {
 	
 	public CalendarDay getCalendarDay() {
 		return calendarDay;
+	}
+
+	public Login getLogin() {
+		return login;
 	}
 
 }

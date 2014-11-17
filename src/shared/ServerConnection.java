@@ -49,6 +49,7 @@ public class ServerConnection {
 
 		try {
 			modifiedSentence = inFromServer.readLine();
+			System.out.println(modifiedSentence);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

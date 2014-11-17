@@ -15,10 +15,6 @@ public class ObjectTranslator {
 
 	}
 
-	public void setNote(String note) {
-
-	}
-
 	public String checkLog(String username, String password) {
 		user.setUserName(username);
 		user.setPassword(password);
@@ -30,10 +26,23 @@ public class ObjectTranslator {
 		String received = sc.Recieve();
 		return received;
 	}
-	//
-	// public String getForecast() {
-	// String fc;
-	// // return fc;
-	// }
+
+	public String getForecast() {
+		String fc;
+		fc = "getClientForecast";
+		String gsonString = gson.toJson(fc);
+		sc.Send(gsonString);
+		String received = sc.Recieve();
+		return received;
+	}
+
+	public String getEvents() {
+		String event;
+		event = "getEvents";
+		String gsonString = gson.toJson(event);
+		sc.Send(gsonString);
+		String received = sc.Recieve();
+		return received;
+	}
 
 }

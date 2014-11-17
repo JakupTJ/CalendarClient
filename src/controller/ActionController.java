@@ -3,6 +3,7 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import view.CalendarWeek;
 import view.Login;
 import view.Screen;
 
@@ -23,9 +24,18 @@ public class ActionController implements ActionListener {
 			String username = screen.getLogin().getTxtremail().getText();
 			String password = screen.getLogin().getPasswordField().getText();
 			System.out.println(username + password);
-			cc.checkLog(username, password);
+			shared.User currentUser = cc.checkLog (username, password);
 			
-//			cc.getForecast();
+			if (currentUser != null) {
+				cc.getForecast();
+				cc.getEvents();
+				screen.show(screen.CALENDARWEEK);
+			}
+			
+//			else if  (cmd.equals(CalendarWeek.CALENDARDAY)) {
+//				screen.show(screen.CALENDARDAY);
+//			}
+//			
 		}
 		
 //		else if (cmd.equals(eventView.NOTESUBMIT)){

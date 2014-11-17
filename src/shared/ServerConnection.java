@@ -24,6 +24,8 @@ public class ServerConnection {
 	public void Send(String gsonString) {
 		byte[] encrypted = Encryption(gsonString);
 		try {
+			
+			Connect();
 			System.out.println(encrypted);
 			outToServer.write(encrypted);
 			outToServer.flush();

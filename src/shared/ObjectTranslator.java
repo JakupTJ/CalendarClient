@@ -23,6 +23,7 @@ public class ObjectTranslator {
 		user.setUserName(username);
 		user.setPassword(password);
 		user.setActive(true);
+		user.setOverallID("logIn");
 		String gsonString = gson.toJson(user);
 		System.out.println(gsonString);
 		sc.Send(gsonString);

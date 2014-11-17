@@ -22,7 +22,7 @@ public class ObjectTranslator {
 	public String checkLog(String username, String password) {
 		user.setUserName(username);
 		user.setPassword(password);
-		user.setActive(1);
+		user.setActive(true);
 		String gsonString = gson.toJson(user);
 		System.out.println(gsonString);
 		sc.Send(gsonString);

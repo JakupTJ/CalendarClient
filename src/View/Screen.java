@@ -12,14 +12,14 @@ public class Screen extends JFrame {
 	public static final int WITDH = 400;
 	public static final int HEIGHT = 400;
 
+	public static final String LOGIN = "login";
 	public static final String CALENDARDAY = "calendarDay";
 	public static final String CALENDARWEEK = "calendarWeek";
-	public static final String LOGIN = "login";
+	
 
 	private ActionController actionController;
 	private JPanel contentPane;
 	private CardLayout cl;
-//	private Calendar calendar;
 	private Login login;
 	private CalendarDay calendarDay;
 	private CalendarWeek calendarWeek;
@@ -40,8 +40,8 @@ public class Screen extends JFrame {
 		// Objects of JPanels
 
 		login = new Login(actionController);
-		calendarWeek = new CalendarWeek();
-		calendarDay = new CalendarDay();
+		calendarWeek = new CalendarWeek(actionController);
+		calendarDay = new CalendarDay(actionController);
 		
 		// adding JPanels
 

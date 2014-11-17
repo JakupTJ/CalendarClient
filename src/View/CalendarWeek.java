@@ -15,6 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+
+import controller.ActionController;
+
 import java.awt.FlowLayout;
 
 public class CalendarWeek extends JPanel {
@@ -26,7 +29,7 @@ public class CalendarWeek extends JPanel {
 	JLabel weekColumn;
 	JLabel timeColumn;
 
-	public CalendarWeek() {
+	public CalendarWeek(ActionController actionController) {
 		setSize(Screen.WITDH, Screen.HEIGHT);
 		 Border border = BorderFactory.createLineBorder(Color.black);
 

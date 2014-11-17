@@ -7,23 +7,16 @@ import controller.ClientController;
 
 public class ObjectTranslator {
 
-	ClientController cc = new ClientController();
-	ServerConnection sc = new ServerConnection ();
+	ServerConnection sc = new ServerConnection();
 	User user = new User();
-
-//	String obj = cc.setNote(note);
-
 	Gson gson = new GsonBuilder().create();
 
-//	String gsonString = gson.toJson(obj);
-	
 	public ObjectTranslator() {
-		
+
 	}
 
 	public void setNote(String note) {
 
-	
 	}
 
 	public String checkLog(String username, String password) {
@@ -31,14 +24,15 @@ public class ObjectTranslator {
 		user.setPassword(password);
 		user.setActive(1);
 		String gsonString = gson.toJson(user);
+		System.out.println(gsonString);
 		sc.Send(gsonString);
 		String received = sc.Recieve();
-	return received;		
+		return received;
 	}
-//
-//	public String getForecast() {
-//		String fc;
-////		return fc;
-//	}
+	//
+	// public String getForecast() {
+	// String fc;
+	// // return fc;
+	// }
 
 }

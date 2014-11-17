@@ -4,11 +4,10 @@ import shared.ObjectTranslator;
 
 public class ClientController {
 	
-	ObjectTranslator ot;
+	ObjectTranslator ot = new ObjectTranslator();
 
 	public ClientController() {
-		this.ot = new ObjectTranslator();
-
+		
 	}
 
 //	public void setNote(String note) {
@@ -16,9 +15,8 @@ public class ClientController {
 //	}
 ////
 	public String checkLog(String username, String password) {
-		String log;
-		log = ot.checkLog(username, password);
-		return log;
+		System.out.println(username + password);
+		return ot.checkLog(username, password);
 	}
 //
 //	public String getForecast() {

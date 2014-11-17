@@ -38,7 +38,7 @@ public class Login extends JPanel {
 		label.setBounds(110, 11, 100, 20);
 		add(label);
 
-		txtremail = new JTextArea("Insert your CBS-email adress");
+		txtremail = new JTextArea("Insert your CBS-email address");
 		txtremail.setBounds(35, 125, 250, 29);
 		add(txtremail);
 
@@ -61,7 +61,7 @@ public class Login extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (txtremail.getText().equals("Insert your CBS-email adress"))
+				if (txtremail.getText().equals("Insert your CBS-email address"))
 					txtremail.setText("");
 
 			}
@@ -73,7 +73,7 @@ public class Login extends JPanel {
 
 		btnLogin = new JButton("Login to BCBS");
 		btnLogin.addActionListener(actionController);
-		btnLogin.setActionCommand(Screen.LOGIN);
+		btnLogin.setActionCommand(LOGINSUBMIT);
 		btnLogin.setBounds(94, 298, 132, 26);
 		add(btnLogin);
 
@@ -82,15 +82,8 @@ public class Login extends JPanel {
 		add(btnQuitBcbs);
 
 		lblBackground = new JLabel("");
-		lblBackground
-				.setIcon(new ImageIcon(
-						"C:\\Users\\JákupToftum\\Desktop\\Mítt\\Ha.IT\\"
-								+ "2. Semester\\TIPR\\Projekt\\myndir\\bitcoin-wall.jpg"));
 		lblBackground.setBounds(0, 0, 320, 480);
 		add(lblBackground);
-
-		// Model.User u = dc.login(email, password);
-
 	}
 
 	public JTextArea getTxtremail() {

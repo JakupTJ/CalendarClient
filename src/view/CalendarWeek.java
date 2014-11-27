@@ -1,5 +1,6 @@
 package view;
 
+import javax.management.StringValueExp;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -43,7 +44,7 @@ public class CalendarWeek extends JPanel {
 	private JButton forwardBtn;
 	private JButton goBtn;
 	private JLabel weekLbl;
-	private JTextField selectTxt;
+	private JTextField weekTxt;
 	
 	private Calendar cal = new GregorianCalendar();
 	private ActionController actionController;
@@ -79,7 +80,7 @@ public class CalendarWeek extends JPanel {
 					calendarPanel.add(dateBtn[b], new GridLayout(2,7));
 					}
 				
-				Insertdates(START_WEEK,START_YEAR);
+				insertdates(START_WEEK,START_YEAR);
 				
 				//add activePanel to main panel
 				activePanel = new JPanel(new GridLayout(1,5));
@@ -106,13 +107,13 @@ public class CalendarWeek extends JPanel {
 				activePanel.add(weekLbl);
 				
 				//Interactive TextField to activePanel
-				selectTxt = new JTextField(" ");
-				activePanel.add(selectTxt);
+				weekTxt = new JTextField(" ");
+				activePanel.add(weekTxt);
 				
 				add(activePanel, BorderLayout.SOUTH);
 			}
 
-	private void Insertdates(int week, int year) {
+	private void insertdates(int week, int year) {
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		cal.set(Calendar.WEEK_OF_YEAR, week);
 		cal.set(Calendar.YEAR, year);
@@ -125,46 +126,89 @@ public class CalendarWeek extends JPanel {
 			
 			switch (thisMonth) {
 			case 0:
-				dateBtn[i] = new JButton("Jan" + " " + (thisDay));
+				dateBtn[i].setText("Jan" + " " + (thisDay));
 				break;
 			case 1:
-				dateBtn[i] = new JButton("Feb" + " " + (thisDay));
+				dateBtn[i].setText("Feb" + " " + (thisDay));
 				break;
 			case 2:
-				dateBtn[i] = new JButton("Mar" + " " + (thisDay));
+				dateBtn[i].setText("Mar" + " " + (thisDay));
 				break;
 			case 3:
-				dateBtn[i] = new JButton("Apr" + " " + (thisDay));
+				dateBtn[i].setText("Apr" + " " + (thisDay));
 				break;
 			case 4:
-				dateBtn[i] = new JButton("May" + " " + (thisDay));
+				dateBtn[i].setText("May" + " " + (thisDay));
 				break;
 			case 5:
-				dateBtn[i] = new JButton("Jun" + " " + (thisDay));
+				dateBtn[i].setText("Jun" + " " + (thisDay));
 				break;
 			case 6:
-				dateBtn[i] = new JButton("Jul" + " " + (thisDay));
+				dateBtn[i].setText("Jul" + " " + (thisDay));
 				break;
 			case 7:
-				dateBtn[i] = new JButton("Aug" + " " + (thisDay));
+				dateBtn[i].setText("Aug" + " " + (thisDay));
 				break;
 			case 8:
-				dateBtn[i] = new JButton("Sep" + " " + (thisDay));
+				dateBtn[i].setText("Sep" + " " + (thisDay));
 				break;
 			case 9:
-				dateBtn[i] = new JButton("Oct" + " " + (thisDay));
+				dateBtn[i].setText("Oct" + " " + (thisDay));
 				break;
 			case 10:
-				dateBtn[i] = new JButton("Nov" + " " + (thisDay));
+				dateBtn[i].setText("Nov" + " " + (thisDay));
 				break;
 			case 11:
-				dateBtn[i] = new JButton("Dec" + " " + (thisDay));
+				dateBtn[i].setText("Dec" + " " + (thisDay));
 				break;
 			}
+			cal.add(Calendar.DATE, 1);
 			Insets ins = new Insets(0, 0, 25, 25);
 			dateBtn[i].setMargin(ins);
 			dateBtn[i].addActionListener(actionController);
 			dateBtn[i].setActionCommand(DAY);
 		}
-	}	
+	}
+	
+	public void refreshDates(int nextWeek) {
+		
+		START_WEEK += nextWeek;
+		insertdates(START_WEEK, START_YEAR);
+		
+		String stringWeek = String.valueOf(START_WEEK);
+		
+		weekTxt.setText(stringWeek);
+	}
+
+	public JPanel getCalendarPanel() {
+		return calendarPanel;
+	}
+
+	public void setCalendarPanel(JPanel calendarPanel) {
+		this.calendarPanel = calendarPanel;
+	}
+
+	public JPanel getActivePanel() {
+		return activePanel;
+	}
+
+	public void setActivePanel(JPanel activePanel) {
+		this.activePanel = activePanel;
+	}
+
+	public JLabel getWeekLbl() {
+		return weekLbl;
+	}
+
+	public void setWeekLbl(JLabel weekLbl) {
+		this.weekLbl = weekLbl;
+	}
+
+	public JTextField getWeekTxt() {
+		return weekTxt;
+	}
+
+	public void setWeekTxt(JTextField weekTxt) {
+		this.weekTxt = weekTxt;
+	}
 }

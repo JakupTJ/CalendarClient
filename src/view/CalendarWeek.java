@@ -62,5 +62,19 @@ public class CalendarWeek extends JPanel {
 			JLabel weekColumn = new JLabel(("" + day),SwingConstants.CENTER);
 			headerPanel.add(weekColumn, new GridLayout(2,7));
 		}
+		
+		// add calendarPanel to main panel
+				calendarPanel = new JPanel(new GridLayout(0,7));
+				calendarPanel.setVisible(true);
+				add(calendarPanel, BorderLayout.CENTER);	
+				// Insert buttons as weekdays
+				for ( int b = 0; b < dateBtn.length; b++) {
+					dateBtn[b] = new JButton();
+//					dateBtn[e].addActionListener(actionController);
+//					dateBtn[e].setActionCommand("button" + e);
+					calendarPanel.add(dateBtn[b], new GridLayout(2,7));
+					}
+
+	
 	}
 }

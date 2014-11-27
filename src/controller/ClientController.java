@@ -25,8 +25,7 @@ public class ClientController {
 
 	}
 
-	public String getEvents() {
-		return ot.getEvents();
-
+	public void getEvents(String identifier) {
+		
 	}
 }

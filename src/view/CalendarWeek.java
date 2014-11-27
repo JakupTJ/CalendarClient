@@ -107,7 +107,7 @@ public class CalendarWeek extends JPanel {
 				activePanel.add(weekLbl);
 				
 				//Interactive TextField to activePanel
-				weekTxt = new JTextField(" ");
+				weekTxt = new JTextField("" + START_WEEK);
 				activePanel.add(weekTxt);
 				
 				add(activePanel, BorderLayout.SOUTH);
@@ -210,5 +210,9 @@ public class CalendarWeek extends JPanel {
 
 	public void setWeekTxt(JTextField weekTxt) {
 		this.weekTxt = weekTxt;
+	}
+
+	public JButton[] getDateBtn() {
+		return dateBtn;
 	}
 }

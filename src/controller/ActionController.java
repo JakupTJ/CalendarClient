@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import shared.User;
+import view.CalendarDay;
 import view.CalendarWeek;
 import view.Login;
 import view.Screen;
@@ -10,6 +12,7 @@ import view.Screen;
 public class ActionController implements ActionListener {
 	private Screen screen;
 	private ClientController cc;
+	private User currentUser;
 
 	public ActionController(Screen screen) {
 		this.screen = screen;
@@ -24,12 +27,12 @@ public class ActionController implements ActionListener {
 			String username = screen.getLogin().getTxtremail().getText();
 			String password = screen.getLogin().getPasswordField().getText();
 			System.out.println(username + password);
-			shared.User currentUser = cc.checkLog (username, password);
+			currentUser = cc.checkLog (username, password);
 			
 			if (currentUser != null) {
 				cc.getForecast();
 				cc.getEvents();
-				screen.show(screen.CALENDARWEEK);
+				screen.show(Screen.CALENDARWEEK);
 			}
 		}
 		
@@ -40,7 +43,16 @@ public class ActionController implements ActionListener {
 				screen.getCalendarWeek().refreshDates(+1);
 			}
 			else if (cmd.equals(CalendarWeek.DAY)) {
-				screen.show(screen.CALENDARDAY);
+				String day = screen.getCalendarWeek().getDateBtn().
+						// Sammenlign år med år, månen måned, dag dag med den ønskede d
+				cc.getEvents();
+		
+				screen.show(Screen.CALENDARDAY);
+			}
+		
+			else if (cmd.equals(CalendarDay.BACK)) {
+				System.out.println("hej");
+				screen.show(Screen.CALENDARWEEK);
 			}
 		}
 		

@@ -40,7 +40,6 @@ public class Screen extends JFrame {
 		// Objects of JPanels
 
 		calendarWeek = new CalendarWeek(actionController);
-
 		login = new Login(actionController);
 		calendarDay = new CalendarDay(actionController);
 		

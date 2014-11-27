@@ -31,11 +31,12 @@ public class ActionController implements ActionListener {
 				cc.getEvents();
 				screen.show(screen.CALENDARWEEK);
 			}
+		}
+		
+			else if (cmd.equals(CalendarWeek.DAY)) {
+				screen.show(Screen.CALENDARDAY);
+			}
 			
-//			else if  (cmd.equals(CalendarWeek.CALENDARDAY)) {
-//				screen.show(screen.CALENDARDAY);
-//			}
-//			
 		}
 		
 //		else if (cmd.equals(eventView.NOTESUBMIT)){
@@ -49,6 +50,5 @@ public class ActionController implements ActionListener {
 //			
 //		}
 //		
-	}
 
 

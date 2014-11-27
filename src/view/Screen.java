@@ -9,8 +9,8 @@ import controller.ActionController;
 
 public class Screen extends JFrame {
 
-	public static final int WITDH = 400;
-	public static final int HEIGHT = 400;
+	public static final int WITDH = 600;
+	public static final int HEIGHT = 200;
 
 	public static final String LOGIN = "login";
 	public static final String CALENDARDAY = "calendarDay";
@@ -39,14 +39,16 @@ public class Screen extends JFrame {
 
 		// Objects of JPanels
 
-		login = new Login(actionController);
 		calendarWeek = new CalendarWeek(actionController);
+
+		login = new Login(actionController);
 		calendarDay = new CalendarDay(actionController);
 		
 		// adding JPanels
 
-		contentPane.add(login, LOGIN);
 		contentPane.add(calendarWeek, CALENDARWEEK);
+
+		contentPane.add(login, LOGIN);
 		contentPane.add(calendarDay, CALENDARDAY);
 
 	}

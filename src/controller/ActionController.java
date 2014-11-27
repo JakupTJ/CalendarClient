@@ -33,8 +33,11 @@ public class ActionController implements ActionListener {
 			}
 		}
 		
-			else if (cmd.equals(CalendarWeek.DAY)) {
-				screen.show(Screen.CALENDARDAY);
+			else if (cmd.equals(CalendarWeek.BACK)) {
+				screen.show(Screen.CALENDARWEEK);
+			}
+			else if (cmd.equals(CalendarWeek.NEXT)) {
+				screen.show(Screen.CALENDARWEEK);
 			}
 			
 		}

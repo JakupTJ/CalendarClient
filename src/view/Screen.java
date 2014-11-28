@@ -44,10 +44,8 @@ public class Screen extends JFrame {
 		calendarDay = new CalendarDay(actionController);
 		
 		// adding JPanels
-
-		contentPane.add(calendarWeek, CALENDARWEEK);
-
 		contentPane.add(login, LOGIN);
+		contentPane.add(calendarWeek, CALENDARWEEK);
 		contentPane.add(calendarDay, CALENDARDAY);
 
 	}

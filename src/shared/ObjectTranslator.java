@@ -1,5 +1,7 @@
 package shared;
 
+import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -16,8 +18,8 @@ public class ObjectTranslator {
 
 	}
 
-	public String checkLog(String username, String password) {
-		user.setUserName(username);
+	public String checkLog(String email, String password) {
+		user.setEmail(email);
 		user.setPassword(password);
 		user.setActive(true);
 		user.setOverallID("logIn");
@@ -25,6 +27,7 @@ public class ObjectTranslator {
 		System.out.println(gsonString);
 		sc.Send(gsonString);
 		String received = sc.Recieve();
+		System.out.println(received);
 		return received;
 	}
 
@@ -37,12 +40,16 @@ public class ObjectTranslator {
 		return received;
 	}
 
-	public String getEvents() {
-		event.setOverallID("getEvent");
+	public Events getEvents() {
+		event.setOverallID("getEvents");
 		String gsonString = gson.toJson(event);
 		sc.Send(gsonString);
 		String received = sc.Recieve();
-		return received;
+		Events e = (Events) gson.fromJson(received, Events.class);
+		for (int i = 0; i < 10; i++) {
+			System.out.println(e.getTitle());
+		}
+		return e;
 	}
 
 }

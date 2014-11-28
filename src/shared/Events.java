@@ -2,39 +2,47 @@ package shared;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class Events implements Serializable {
 
-	private final long String = 2L;	
-	public int event_id;
-	public int calendarid;
+	private final long String = 3L;	
+	public int id;
+	public int eventid;
+	public int calendarId;
 	public int createdby;
-	public Timestamp start;
-	public Timestamp end;
-	public String title;
 	public String description;
-	public int location;
+	public String title;
+	public String location;
+	public Timestamp ts;
+	public ArrayList<String> start;
+	public ArrayList<String> end;
+	public Timestamp startTimestamp;
+	public Timestamp endTimestamp;
+	public String type;
 	public boolean active;
 	public String overallID;
-	
 
-	public String getOverallID() {
-		return overallID;
+	
+	
+	
+	public int getId() {
+		return id;
 	}
-	public void setOverallID(String overallID) {
-		this.overallID = overallID;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getEvent_id() {
-		return event_id;
+	public int getEventid() {
+		return eventid;
 	}
-	public void setEvent_id(int event_id) {
-		this.event_id = event_id;
+	public void setEventid(int eventid) {
+		this.eventid = eventid;
 	}
-	public int getCalendarid() {
-		return calendarid;
+	public int getCalendarId() {
+		return calendarId;
 	}
-	public void setCalendarid(int calendarid) {
-		this.calendarid = calendarid;
+	public void setCalendarId(int calendarId) {
+		this.calendarId = calendarId;
 	}
 	public int getCreatedby() {
 		return createdby;
@@ -42,17 +50,11 @@ public class Events implements Serializable {
 	public void setCreatedby(int createdby) {
 		this.createdby = createdby;
 	}
-	public Timestamp getStart() {
-		return start;
+	public String getDescription() {
+		return description;
 	}
-	public void setStart(Timestamp start) {
-		this.start = start;
-	}
-	public Timestamp getEnd() {
-		return end;
-	}
-	public void setEnd(Timestamp end) {
-		this.end = end;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getTitle() {
 		return title;
@@ -60,17 +62,47 @@ public class Events implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public int getLocation() {
+	public String getLocation() {
 		return location;
 	}
-	public void setLocation(int location) {
+	public void setLocation(String location) {
 		this.location = location;
+	}
+	public Timestamp getTs() {
+		return ts;
+	}
+	public void setTs(Timestamp ts) {
+		this.ts = ts;
+	}
+	public ArrayList<String> getStart() {
+		return start;
+	}
+	public void setStart(ArrayList<String> start) {
+		this.start = start;
+	}
+	public ArrayList<String> getEnd() {
+		return end;
+	}
+	public void setEnd(ArrayList<String> end) {
+		this.end = end;
+	}
+	public Timestamp getStartTimestamp() {
+		return startTimestamp;
+	}
+	public void setStartTimestamp(Timestamp startTimestamp) {
+		this.startTimestamp = startTimestamp;
+	}
+	public Timestamp getEndTimestamp() {
+		return endTimestamp;
+	}
+	public void setEndTimestamp(Timestamp endTimestamp) {
+		this.endTimestamp = endTimestamp;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public boolean isActive() {
 		return active;
@@ -78,5 +110,13 @@ public class Events implements Serializable {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	public String getOverallID() {
+		return overallID;
+	}
+	public void setOverallID(String overallID) {
+		this.overallID = overallID;
+	}
 	
+
+
 }

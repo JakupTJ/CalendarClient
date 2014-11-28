@@ -13,7 +13,7 @@ public class ServerConnection {
 
 	public void Connect() {
 		try {
-			clientSocket = new Socket("localhost", 7000);
+			clientSocket = new Socket("localhost", 8888);
 			outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -22,10 +22,12 @@ public class ServerConnection {
 	}
 
 	public void Send(String gsonString) {
+		
+		Connect();
+
 		byte[] encrypted = Encryption(gsonString);
 		try {
 			
-			Connect();
 			System.out.println(encrypted);
 			outToServer.write(encrypted);
 			outToServer.flush();
@@ -60,7 +62,7 @@ public class ServerConnection {
 
 	public byte[] Encryption(String gsonString) {
 		byte[] input = gsonString.getBytes();
-		byte key = (byte) Double.parseDouble("3.014");
+		byte key = (byte) 3.014;
 		byte[] encrypted = input;
 		for (int i = 0; i < encrypted.length; i++)
 			encrypted[i] = (byte) (encrypted[i] ^ key);

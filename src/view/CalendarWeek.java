@@ -27,6 +27,7 @@ import java.util.GregorianCalendar;
 
 public class CalendarWeek extends JPanel {
 
+	public static String MONTHDAYSEPARATOR = " ";
 	public static final String BACK ="back";
 	public static final String NEXT = "next";
 	public static final String GO = "go";
@@ -126,47 +127,44 @@ public class CalendarWeek extends JPanel {
 			
 			switch (thisMonth) {
 			case 0:
-				dateBtn[i].setText("Jan" + " " + (thisDay));
+				dateBtn[i].setText("Jan" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 1:
-				dateBtn[i].setText("Feb" + " " + (thisDay));
+				dateBtn[i].setText("Feb" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 2:
-				dateBtn[i].setText("Mar" + " " + (thisDay));
+				dateBtn[i].setText("Mar" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 3:
-				dateBtn[i].setText("Apr" + " " + (thisDay));
+				dateBtn[i].setText("Apr" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 4:
-				dateBtn[i].setText("May" + " " + (thisDay));
+				dateBtn[i].setText("May" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 5:
-				dateBtn[i].setText("Jun" + " " + (thisDay));
+				dateBtn[i].setText("Jun" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 6:
-				dateBtn[i].setText("Jul" + " " + (thisDay));
+				dateBtn[i].setText("Jul" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 7:
-				dateBtn[i].setText("Aug" + " " + (thisDay));
+				dateBtn[i].setText("Aug" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 8:
-				dateBtn[i].setText("Sep" + " " + (thisDay));
+				dateBtn[i].setText("Sep" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 9:
-				dateBtn[i].setText("Oct" + " " + (thisDay));
+				dateBtn[i].setText("Oct" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 10:
-				dateBtn[i].setText("Nov" + " " + (thisDay));
+				dateBtn[i].setText("Nov" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			case 11:
-				dateBtn[i].setText("Dec" + " " + (thisDay));
+				dateBtn[i].setText("Dec" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			}
 			cal.add(Calendar.DATE, 1);
-			Insets ins = new Insets(0, 0, 25, 25);
-			dateBtn[i].setMargin(ins);
 			dateBtn[i].addActionListener(actionController);
-			dateBtn[i].setActionCommand(DAY);
 		}
 	}
 	

@@ -1,21 +1,22 @@
 package controller;
 
+import shared.Events;
 import shared.ObjectTranslator;
 import shared.User;
 
 public class ClientController {
 
 	private User currentUser;
+	
 	ObjectTranslator ot = new ObjectTranslator();
 
 	public ClientController() {
 
 	}
 
-	public User checkLog(String username, String password) {
-		System.out.println(username + password);
-		ot.checkLog(username, password);
-		return currentUser;
+	public String checkLog(String email, String password) {
+		System.out.println(email + password);
+		return ot.checkLog(email, password);
 	}
 
 	public String getForecast() {
@@ -25,7 +26,7 @@ public class ClientController {
 
 	}
 
-	public String getEvents() {
+	public Events getEvents() {
 		return ot.getEvents();
 		
 	}

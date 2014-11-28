@@ -31,22 +31,21 @@ public class ActionController implements ActionListener {
 			
 			if (currentUser != null) {
 				cc.getForecast();
-				cc.getEvents();
 				screen.show(Screen.CALENDARWEEK);
 			}
 		}
 		
-			else if (cmd.equals(CalendarWeek.BACK)) {
+		else if (cmd.equals(CalendarWeek.BACK)) {
 				screen.getCalendarWeek().refreshDates(-1);
 			}
-			else if (cmd.equals(CalendarWeek.NEXT)) {
+		else if (cmd.equals(CalendarWeek.NEXT)) {
 				screen.getCalendarWeek().refreshDates(+1);
 			}
-			else if (cmd.equals(CalendarWeek.DAY)) {
-				String day = screen.getCalendarWeek().getDateBtn().
-						// Sammenlign år med år, månen måned, dag dag med den ønskede d
+		else if (cmd.equals(CalendarWeek.DAY)) {
+				// Sammenlign år med år, månen måned, dag dag med den ønskede d
+				
 				cc.getEvents();
-		
+				System.out.println(cc.getEvents());
 				screen.show(Screen.CALENDARDAY);
 			}
 		

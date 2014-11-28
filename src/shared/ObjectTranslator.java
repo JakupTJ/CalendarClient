@@ -9,6 +9,7 @@ public class ObjectTranslator {
 
 	ServerConnection sc = new ServerConnection();
 	User user = new User();
+	Events event = new Events();
 	Gson gson = new GsonBuilder().create();
 
 	public ObjectTranslator() {
@@ -37,8 +38,7 @@ public class ObjectTranslator {
 	}
 
 	public String getEvents() {
-		String event;
-		event = "getEvents";
+		event.setOverallID("getEvent");
 		String gsonString = gson.toJson(event);
 		sc.Send(gsonString);
 		String received = sc.Recieve();

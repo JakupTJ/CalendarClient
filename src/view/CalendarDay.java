@@ -16,7 +16,7 @@ import javax.swing.JButton;
 
 public class CalendarDay extends JPanel{
 	
-	public static final String BACK = "back";
+	public static final String WEEK = "week";
 	
 	private ActionController actionController;
 	private JLabel lblDayView;
@@ -52,7 +52,7 @@ public class CalendarDay extends JPanel{
 		
 		btnBack = new JButton("Week View");
 		btnBack.addActionListener(actionController);
-		btnBack.setActionCommand(BACK);
+		btnBack.setActionCommand(WEEK);
 		activePanel.add(btnBack);
 		
 		
@@ -62,8 +62,8 @@ public class CalendarDay extends JPanel{
 	public void refreshEvents(Object[][] data,String[] columnNames) {
 		
 		if(resultTable != null){
-			this.remove(resultTable);
-			this.remove(scrollPane);
+			eventPanel.remove(resultTable);
+			eventPanel.remove(scrollPane);
 		}
 		resultTable = new JTable(data,columnNames);
 		resultTable.setPreferredScrollableViewportSize(new Dimension(800,70));
@@ -76,8 +76,32 @@ public class CalendarDay extends JPanel{
 	}
 	
 	public void removeTable() {
-		this.remove(resultTable);
-		this.remove(scrollPane);
+		eventPanel.remove(resultTable);
+		eventPanel.remove(scrollPane);
+	}
+	
+	public JLabel getLblDayView() {
+		return lblDayView;
+	}
+
+	public void setLblDayView(JLabel lblDayView) {
+		this.lblDayView = lblDayView;
+	}
+
+	public JPanel getEventPanel() {
+		return eventPanel;
+	}
+
+	public void setEventPanel(JPanel eventPanel) {
+		this.eventPanel = eventPanel;
+	}
+
+	public JPanel getActivePanel() {
+		return activePanel;
+	}
+
+	public void setActivePanel(JPanel activePanel) {
+		this.activePanel = activePanel;
 	}
 
 }

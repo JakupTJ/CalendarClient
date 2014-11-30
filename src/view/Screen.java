@@ -9,8 +9,8 @@ import controller.ActionController;
 
 public class Screen extends JFrame {
 
-	public static final int WITDH = 600;
-	public static final int HEIGHT = 200;
+	public static final int WITDH = 950;
+	public static final int HEIGHT = 320;
 
 	public static final String LOGIN = "login";
 	public static final String CALENDARDAY = "calendarDay";
@@ -29,6 +29,7 @@ public class Screen extends JFrame {
 	public Screen() {
 		actionController = new ActionController(this);
 		setSize(WITDH,HEIGHT);
+		setResizable(false);
 
 		// adding the contentPane
 		

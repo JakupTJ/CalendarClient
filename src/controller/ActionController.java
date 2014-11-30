@@ -43,7 +43,7 @@ public class ActionController implements ActionListener {
 			String password = screen.getLogin().getPasswordField().getText();
 			String recieve = cc.checkLog (email, password);
 			
-			if (recieve.equals("invalid")) {
+			if (!recieve.equals("invalid")) {
 				
 				currentUser = (User) gson.fromJson(recieve, User.class);
 
@@ -65,7 +65,7 @@ public class ActionController implements ActionListener {
 		else if (cmd.equals(CalendarWeek.NEXT)) {
 				screen.getCalendarWeek().refreshDates(+1);
 			}
-		else if (cmd.equals(CalendarDay.BACK)) {
+		else if (cmd.equals(CalendarDay.WEEK)) {
 				screen.show(Screen.CALENDARWEEK);
 			}
 			
@@ -73,8 +73,10 @@ public class ActionController implements ActionListener {
 				// Date Clicked
 				int iMonth, iDay, iMid;
 				String sMonthDay = cmd;
+				
 				iMid = sMonthDay.indexOf(screen.getCalendarWeek().MONTHDAYSEPARATOR);
 				String monthString = sMonthDay.substring(0, iMid);
+				
 				iMonth = 0;
 				if (monthString.equals("Jan")) {
 					iMonth = 0;
@@ -104,8 +106,13 @@ public class ActionController implements ActionListener {
 
 				iDay = Integer.parseInt(sMonthDay.substring(iMid + 1,sMonthDay.length()));
 
-				cc.getEvents();
-				System.out.println(cc.getEvents());
+				selectedDay = iDay;
+				selectedMonth = iMonth;
+				
+				insertEvents(selectedDay,selectedMonth);
+				
+				screen.getCalendarDay().getLblDayView().setText(cmd);
+				screen.show(Screen.CALENDARDAY);
 				
 				
 				
@@ -115,8 +122,46 @@ public class ActionController implements ActionListener {
 				
 		
 		}
+	private void insertEvents(int selectedDay, int selectedMonth) {
+		
+		// Check to see how many columns we need to generate
+		int emptyRow = 0;
+		
+		for(int i = 0; i < eventsArray.size(); i++) {
+			
+			if(eventsArray.get(i).getStartTimestamp().getMonth() == selectedMonth && eventsArray.get(i).getStartTimestamp().getDate() == selectedDay) {
+				emptyRow++;
+			}
+		}
+		
+		String[] Header = {"Start", "End", "Cal ID", "Event ID", "Title", "Description", "Location"};
+		
+		// Creating the 2D object
+		Object[][] data = new Object[emptyRow][7];
+		int Eventrow = 0;
+		
+		// adding event details to every generated column
+		for(int i = 0; i < eventsArray.size(); i++) {
+			
+			if(eventsArray.get(i).getStartTimestamp().getMonth() == selectedMonth && eventsArray.get(i).getStartTimestamp().getDate() == selectedDay) {
+				
+				String start = eventsArray.get(i).getStartTimestamp().getHours() + ":" + eventsArray.get(i).getStartTimestamp().getMinutes();
+				String end = eventsArray.get(i).getEndTimestamp().getHours() + ":" + eventsArray.get(i).getEndTimestamp().getMinutes();
+				
+				data[Eventrow][0] = start;
+				data[Eventrow][1] = end;
+				data[Eventrow][2] = eventsArray.get(i).getCalendarId();
+				data[Eventrow][3] = eventsArray.get(i).getEventid();
+				data[Eventrow][4] = eventsArray.get(i).getTitle();
+				data[Eventrow][5] = eventsArray.get(i).getDescription();
+				data[Eventrow][6] = eventsArray.get(i).getLocation();
+				Eventrow++;
+			}
+		}
+		
+		screen.getCalendarDay().refreshEvents(data, Header);
 	}
-
+}
 		
 //		else if (cmd.equals(eventView.NOTESUBMIT)){
 //			String note = screen.getEventView.getTxtNote.getText();

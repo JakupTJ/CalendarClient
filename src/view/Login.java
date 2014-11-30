@@ -30,16 +30,16 @@ public class Login extends JPanel {
 	public Login(ActionController actionController) {
 		this.actionController = actionController;
 		setLayout(null);
-		setSize(Screen.WIDTH, Screen.HEIGHT);
+		setSize(WIDTH, HEIGHT);
 
 		JLabel label = new JLabel("Login");
 		label.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(110, 11, 100, 20);
+		label.setBounds(404, 11, 100, 20);
 		add(label);
 
 		txtremail = new JTextArea("Insert your CBS-email address");
-		txtremail.setBounds(35, 125, 250, 29);
+		txtremail.setBounds(329, 80, 250, 29);
 		add(txtremail);
 
 		txtremail.addMouseListener(new MouseListener() {
@@ -68,21 +68,21 @@ public class Login extends JPanel {
 		});
 
 		passwordField = new JPasswordField("**********");
-		passwordField.setBounds(35, 175, 250, 29);
+		passwordField.setBounds(329, 122, 250, 29);
 		add(passwordField);
 
 		btnLogin = new JButton("Login to BCBS");
 		btnLogin.addActionListener(actionController);
 		btnLogin.setActionCommand(LOGINSUBMIT);
-		btnLogin.setBounds(94, 298, 132, 26);
+		btnLogin.setBounds(388, 176, 132, 26);
 		add(btnLogin);
 
 		btnQuitBcbs = new JButton("Quit BCBS");
-		btnQuitBcbs.setBounds(111, 387, 98, 26);
+		btnQuitBcbs.setBounds(405, 221, 98, 26);
 		add(btnQuitBcbs);
 
 		lblBackground = new JLabel("");
-		lblBackground.setBounds(0, 0, 320, 480);
+		lblBackground.setBounds(0, 0, 908, 260);
 		add(lblBackground);
 	}
 

@@ -26,7 +26,7 @@ public class ClientController {
 
 	}
 
-	public String getEvents(int i) {
+	public String getEvents(int userID) {
 		return ot.getEvents();
 		
 	}

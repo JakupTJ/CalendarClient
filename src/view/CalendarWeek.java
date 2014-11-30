@@ -60,6 +60,7 @@ public class CalendarWeek extends JPanel {
 			
 		// Add dayPanel to main panel
 		headerPanel = new JPanel(new GridLayout(0,7));
+		headerPanel.setPreferredSize(new Dimension(10,35));
 		headerPanel.setBackground(Color.GRAY);
 		headerPanel.setVisible(true);
 		add(headerPanel, BorderLayout.NORTH);
@@ -105,6 +106,7 @@ public class CalendarWeek extends JPanel {
 				
 				// Info labels to activePanel
 				weekLbl = new JLabel("Week:");
+				weekLbl.setHorizontalAlignment(SwingConstants.CENTER);
 				activePanel.add(weekLbl);
 				
 				//Interactive TextField to activePanel

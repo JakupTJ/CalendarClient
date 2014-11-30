@@ -40,16 +40,11 @@ public class ObjectTranslator {
 		return received;
 	}
 
-	public Events getEvents() {
+	public String getEvents() {
 		event.setOverallID("getEvents");
 		String gsonString = gson.toJson(event);
 		sc.Send(gsonString);
-		String received = sc.Recieve();
-		Events e = (Events) gson.fromJson(received, Events.class);
-		for (int i = 0; i < 10; i++) {
-			System.out.println(e.getTitle());
-		}
-		return e;
+		return sc.Recieve();
 	}
 
 }

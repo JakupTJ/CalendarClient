@@ -2,7 +2,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import shared.Events;
 import shared.User;
 import view.CalendarDay;
 import view.CalendarWeek;
@@ -13,14 +18,20 @@ public class ActionController implements ActionListener {
 	
 	private static String MONTHDAYSEPARATOR = " ";
 
-	
 	private Screen screen;
 	private ClientController cc;
 	private User currentUser;
+	private Events events;
+	private ArrayList<Events> eventsArray = new ArrayList<Events>();
+	private Gson gson = new GsonBuilder().create();
+	
+	private int selectedDay;
+	private int selectedMonth;
 
 	public ActionController(Screen screen) {
 		this.screen = screen;
 		this.cc = new ClientController();
+		this.currentUser = new User();
 		
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -30,12 +41,21 @@ public class ActionController implements ActionListener {
 		if (cmd.equals(Login.LOGINSUBMIT)) {
 			String email = screen.getLogin().getTxtremail().getText();
 			String password = screen.getLogin().getPasswordField().getText();
-			System.out.println(email + password);
 			String recieve = cc.checkLog (email, password);
 			
-			if (recieve.equals("Login Successful")) {
-//				cc.getForecast();
+			if (recieve.equals("invalid")) {
+				
+				currentUser = (User) gson.fromJson(recieve, User.class);
+
 				screen.show(Screen.CALENDARWEEK);
+				
+				String prepareEvents = cc.getEvents(currentUser.getUserid());
+				
+				Events[] event = gson.fromJson(prepareEvents, Events[].class);
+				
+				for(int i = 0; i < event.length; i++) {
+					eventsArray.add(event[i]);
+				}
 			}
 		}
 		
@@ -44,6 +64,9 @@ public class ActionController implements ActionListener {
 			}
 		else if (cmd.equals(CalendarWeek.NEXT)) {
 				screen.getCalendarWeek().refreshDates(+1);
+			}
+		else if (cmd.equals(CalendarDay.BACK)) {
+				screen.show(Screen.CALENDARWEEK);
 			}
 			
 			else {
@@ -90,10 +113,7 @@ public class ActionController implements ActionListener {
 			}
 			
 				
-//			 if (cmd.equals(CalendarDay.BACK)) {
-//				System.out.println("hej");
-//				screen.show(Screen.CALENDARWEEK);
-//			}
+		
 		}
 	}
 

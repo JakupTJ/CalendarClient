@@ -12,6 +12,7 @@ public class ObjectTranslator {
 	ServerConnection sc = new ServerConnection();
 	User user = new User();
 	Events event = new Events();
+	SimpleCall simple = new SimpleCall();
 	Gson gson = new GsonBuilder().create();
 
 	public ObjectTranslator() {
@@ -40,9 +41,9 @@ public class ObjectTranslator {
 		return received;
 	}
 
-	public String getEvents() {
-		event.setOverallID("getEvents");
-		String gsonString = gson.toJson(event);
+	public String getEvents(int userID) {
+		simple.setUserId(userID);
+		String gsonString = gson.toJson(simple);
 		sc.Send(gsonString);
 		return sc.Recieve();
 	}

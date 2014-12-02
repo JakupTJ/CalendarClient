@@ -59,13 +59,13 @@ public class CalendarDay extends JPanel{
 		
 	}
 	
-	public void refreshEvents(Object[][] data,String[] columnNames) {
+	public void refreshEvents(Object[][] data,String[] header) {
 		
 		if(resultTable != null){
 			eventPanel.remove(resultTable);
 			eventPanel.remove(scrollPane);
 		}
-		resultTable = new JTable(data,columnNames);
+		resultTable = new JTable(data,header);
 		resultTable.setPreferredScrollableViewportSize(new Dimension(800,70));
 		resultTable.setFillsViewportHeight(true);
 		

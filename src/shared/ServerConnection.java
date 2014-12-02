@@ -16,7 +16,6 @@ public class ServerConnection {
 			clientSocket = new Socket("localhost", 8888);
 			outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -27,12 +26,9 @@ public class ServerConnection {
 
 		byte[] encrypted = Encryption(gsonString);
 		try {
-			
-			System.out.println(encrypted);
 			outToServer.write(encrypted);
 			outToServer.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -51,7 +47,6 @@ public class ServerConnection {
 
 		try {
 			modifiedSentence = inFromServer.readLine();
-			System.out.println(modifiedSentence);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -38,7 +38,7 @@ public class Login extends JPanel {
 		label.setBounds(404, 11, 100, 20);
 		add(label);
 
-		txtremail = new JTextArea("Insert your CBS-email address");
+		txtremail = new JTextArea("dafr13ab@student.cbs.dk");
 		txtremail.setBounds(329, 80, 250, 29);
 		add(txtremail);
 
@@ -67,7 +67,7 @@ public class Login extends JPanel {
 			}
 		});
 
-		passwordField = new JPasswordField("**********");
+		passwordField = new JPasswordField("123456");
 		passwordField.setBounds(329, 122, 250, 29);
 		add(passwordField);
 

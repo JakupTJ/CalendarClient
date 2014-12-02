@@ -10,7 +10,7 @@ import controller.ClientController;
 public class ObjectTranslator {
 
 	ServerConnection sc = new ServerConnection();
-	User user = new User();
+	User currentUser = new User();
 	Events event = new Events();
 	SimpleCall simple = new SimpleCall();
 	Gson gson = new GsonBuilder().create();
@@ -20,29 +20,31 @@ public class ObjectTranslator {
 	}
 
 	public String checkLog(String email, String password) {
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setActive(true);
-		user.setOverallID("logIn");
-		String gsonString = gson.toJson(user);
+		currentUser.setEmail(email);
+		currentUser.setPassword(password);
+		String gsonString = gson.toJson(currentUser);
 		System.out.println(gsonString);
 		sc.Send(gsonString);
-		String received = sc.Recieve();
-		System.out.println(received);
-		return received;
+		return sc.Recieve();
 	}
 
 	public String getForecast() {
-		String fc;
-		fc = "getClientForecast";
-		String gsonString = gson.toJson(fc);
+		simple.setOverallID("getForecast");
+		String gsonString = gson.toJson(simple);
 		sc.Send(gsonString);
-		String received = sc.Recieve();
-		return received;
+		return sc.Recieve();
 	}
 
 	public String getEvents(int userID) {
+		simple.setOverallID("getEvents");
 		simple.setUserId(userID);
+		String gsonString = gson.toJson(simple);
+		sc.Send(gsonString);
+		return sc.Recieve();
+	}
+
+	public String getQotd() {
+		simple.setOverallID("getQuote");
 		String gsonString = gson.toJson(simple);
 		sc.Send(gsonString);
 		return sc.Recieve();

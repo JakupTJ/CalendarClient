@@ -29,7 +29,7 @@ public class Screen extends JFrame {
 	public Screen() {
 		actionController = new ActionController(this);
 		setSize(WITDH,HEIGHT);
-		setResizable(false);
+//		setResizable(false);
 
 		// adding the contentPane
 		

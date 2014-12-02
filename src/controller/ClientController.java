@@ -27,7 +27,12 @@ public class ClientController {
 	}
 
 	public String getEvents(int userID) {
+		System.out.println("cc+" + userID);
 		return ot.getEvents(userID);
 		
+	}
+
+	public String getQotd() {
+		return ot.getQotd();
 	}
 }

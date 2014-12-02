@@ -39,6 +39,7 @@ public class CalendarWeek extends JPanel {
 			"SUN" };
 	private static int START_WEEK;
 	private static int START_YEAR;
+	
 
 	private JPanel quotePanel;
 	private JLabel qotdLbl;
@@ -95,13 +96,14 @@ public class CalendarWeek extends JPanel {
 		insertdates(START_WEEK, START_YEAR);
 
 		bottomPanel = new JPanel();
-		bottomPanel.setLayout(new BorderLayout(0, 0));
+		bottomPanel.setLayout(new BorderLayout());
 		add(bottomPanel, BorderLayout.SOUTH);
 
 		
 		// add activePanel to main panel
 		activePanel = new JPanel(new GridLayout(1, 5));
 		activePanel.setVisible(true);
+		activePanel.setPreferredSize(new Dimension(0,35));
 		bottomPanel.add(activePanel, BorderLayout.SOUTH);
 
 
@@ -136,8 +138,11 @@ public class CalendarWeek extends JPanel {
 
 		qotdLbl = new JLabel("");
 		qotdLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		qotdLbl.setPreferredSize(new Dimension(0,20));
 		quotePanel.add(qotdLbl);
 	}
+
+	
 
 	private void insertdates(int week, int year) {
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -188,6 +193,7 @@ public class CalendarWeek extends JPanel {
 				dateBtn[i].setText("Dec" + MONTHDAYSEPARATOR + (thisDay));
 				break;
 			}
+			
 			cal.add(Calendar.DATE, 1);
 			dateBtn[i].addActionListener(actionController);
 		}
@@ -201,6 +207,14 @@ public class CalendarWeek extends JPanel {
 		String stringWeek = String.valueOf(START_WEEK);
 
 		weekTxt.setText(stringWeek);
+	}
+	public void goWeek(int weeknumber) {
+		START_WEEK += weeknumber;
+		insertdates(START_WEEK, START_YEAR);
+	}
+	
+	public static int getSTART_YEAR() {
+		return START_YEAR;
 	}
 
 	public JPanel getCalendarPanel() {

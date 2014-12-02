@@ -19,9 +19,8 @@ public class ClientController {
 		return ot.checkLog(email, password);
 	}
 
-	public String getForecast(int selectedMonth, int selectedDay) {
-		System.out.println("getForecast cc" + selectedMonth + " h" + selectedDay);
-		return ot.getForecast(selectedMonth, selectedDay);
+	public String getForecast(int selectedMonth, int selectedDay, int selectedYear) {
+		return ot.getForecast(selectedMonth, selectedDay, selectedYear);
 	}
 
 	public String getEvents(int userID) {

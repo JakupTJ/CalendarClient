@@ -20,29 +20,29 @@ import view.Screen;
 
 public class ActionController implements ActionListener {
 	
-	private static String MONTHDAYSEPARATOR = " ";
-
 	private Screen screen;
-	private ClientController cc = new ClientController();
-	public User currentUser = new User();
-	private Events events = new Events();
-	private ArrayList<Events> eventsArray = new ArrayList<Events>();
-	private Gson gson = new GsonBuilder().create();
+	private ClientController cc;
+	public User currentUser;
+	private Events events;
+	private ArrayList<Events> eventsArray;
+	private Gson gson;
 	
 	private int selectedDay;
 	private int selectedMonth;
+	private int selectedYear;
 
 	public ActionController(Screen screen) {
 		this.screen = screen;
-//		this.cc = new ClientController();
-//		this.currentUser = new User();
-//		this.events = new Events();
+		this.cc = new ClientController();
+		this.currentUser = new User();
+		this.events = new Events();
+		this.eventsArray = new ArrayList<>();
+		this.gson = new GsonBuilder().create();
 		
 	}
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		
-	
 		if (cmd.equals(Login.LOGINSUBMIT)) {
 			String email = screen.getLogin().getTxtremail().getText();
 			String password = screen.getLogin().getPasswordField().getText();
@@ -63,16 +63,13 @@ public class ActionController implements ActionListener {
 //				
 //				screen.getCalendarWeek().getQotdLbl().setText(qotd);
 
-				System.out.println("vis skærm");
 				screen.show(Screen.CALENDARWEEK);
 				
 				String prepareEvents = cc.getEvents(currentUser.getUserid());
-				System.out.println("prepare events");
 				Events[] event = gson.fromJson(prepareEvents, Events[].class);
-				System.out.println("event array");
+				
 				for(int i = 0; i < event.length; i++) {
 					eventsArray.add(event[i]);
-					System.out.println("hej");
 				}
 			}
 		}
@@ -83,15 +80,25 @@ public class ActionController implements ActionListener {
 		else if (cmd.equals(CalendarWeek.NEXT)) {
 				screen.getCalendarWeek().refreshDates(+1);
 			}
+		else if (cmd.equals(CalendarWeek.GO)) {
+			int weeknumber = Integer.parseInt(screen.getCalendarWeek().getWeekTxt().getText());
+			screen.getCalendarWeek().goWeek(weeknumber);
+		}
 		else if (cmd.equals(CalendarDay.WEEK)) {
+			screen.getCalendarDay().getNotePanel().setVisible(false);
+			screen.getCalendarDay().getNoteLbl().setVisible(false);
+			screen.getCalendarDay().getBtnSet().setVisible(false);
+			screen.getCalendarDay().getSetTxtField().setVisible(false);
+			screen.getCalendarDay().getNoteLbl().setText("");
 				screen.show(Screen.CALENDARWEEK);
 			}
 		else if (cmd.equals(CalendarDay.NOTE)) {
 			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"Hvilket event vil du se noter for?", null));
+					"What event do need notes for?", null));
 			String n = cc.getNote(eventID);
 			Note note = gson.fromJson(n, Note.class);
-			System.out.println("note:" +note.getText());
+			screen.getCalendarDay().getNotePanel().setVisible(true);
+			screen.getCalendarDay().getNoteLbl().setVisible(true);
 			screen.getCalendarDay().getBtnSet().setVisible(true);
 			screen.getCalendarDay().getSetTxtField().setVisible(true);
 			screen.getCalendarDay().getNoteLbl().setText(note.getText());
@@ -145,15 +152,17 @@ public class ActionController implements ActionListener {
 				selectedDay = iDay;
 				selectedMonth = iMonth;
 				
+				
 				insertEvents(iMonth,iDay);
 				
 				screen.getCalendarDay().getLblDayView().setText(cmd);
 				
 				//get forecast and insert into Day panel
-				String weather = cc.getForecast(selectedMonth+1, selectedDay);
+				int selectedYear = screen.getCalendarWeek().getSTART_YEAR();
+				String weather = cc.getForecast(selectedMonth+1, selectedDay, selectedYear);
 				
 				Forecast fc = gson.fromJson(weather, Forecast.class);
-				screen.getCalendarDay().getForecastLbl().setText(fc.getCelsius());
+				screen.getCalendarDay().getForecastTxt().setText(fc.toString());
 				
 				// get notes and insert into day panel
 

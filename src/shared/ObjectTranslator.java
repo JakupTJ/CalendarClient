@@ -13,6 +13,7 @@ public class ObjectTranslator {
 	User currentUser = new User();
 	Events event = new Events();
 	SimpleCall simple = new SimpleCall();
+	Note note = new Note();
 	Gson gson = new GsonBuilder().create();
 
 	public ObjectTranslator() {
@@ -43,10 +44,10 @@ public class ObjectTranslator {
 		return sc.Recieve();
 	}
 
-	public String getForecast(int selectedMonth, int selectedDay) {
+	public String getForecast(int selectedMonth, int selectedDay, int selectedYear) {
 		System.out.println(selectedMonth + " " + selectedDay);
 		simple.setOverallID("getForecast");
-		simple.setYear(2014);
+		simple.setYear(selectedYear);
 		simple.setMonth(selectedMonth);
 		simple.setDay(selectedDay);
 		
@@ -65,7 +66,10 @@ public class ObjectTranslator {
 	}
 
 	public void saveNote(String newNote) {
+		note.setText(newNote);
 		
+		String gsonString = gson.toJson(note);
+		sc.Send(gsonString);		
 	}
 
 }

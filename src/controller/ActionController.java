@@ -4,10 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import shared.Events;
+import shared.Forecast;
+import shared.Note;
 import shared.User;
 import view.CalendarDay;
 import view.CalendarWeek;
@@ -82,6 +86,24 @@ public class ActionController implements ActionListener {
 		else if (cmd.equals(CalendarDay.WEEK)) {
 				screen.show(Screen.CALENDARWEEK);
 			}
+		else if (cmd.equals(CalendarDay.NOTE)) {
+			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
+					"Hvilket event vil du se noter for?", null));
+			String n = cc.getNote(eventID);
+			Note note = gson.fromJson(n, Note.class);
+			System.out.println("note:" +note.getText());
+			screen.getCalendarDay().getBtnSet().setVisible(true);
+			screen.getCalendarDay().getSetTxtField().setVisible(true);
+			screen.getCalendarDay().getNoteLbl().setText(note.getText());
+
+			
+			}
+		else if (cmd.equals(CalendarDay.SET)) {
+			String newNote = screen.getCalendarDay().getSetTxtField().getText();
+			screen.getCalendarDay().getNoteLbl().setText(newNote);
+			cc.saveNote(newNote);
+			
+		}
 			
 			else {
 				// Date Clicked
@@ -126,6 +148,16 @@ public class ActionController implements ActionListener {
 				insertEvents(iMonth,iDay);
 				
 				screen.getCalendarDay().getLblDayView().setText(cmd);
+				
+				//get forecast and insert into Day panel
+				String weather = cc.getForecast(selectedMonth+1, selectedDay);
+				
+				Forecast fc = gson.fromJson(weather, Forecast.class);
+				screen.getCalendarDay().getForecastLbl().setText(fc.getCelsius());
+				
+				// get notes and insert into day panel
+
+				
 				screen.show(Screen.CALENDARDAY);
 				
 				
@@ -145,7 +177,6 @@ public class ActionController implements ActionListener {
 			
 			if(eventsArray.get(i).getStartTimestamp().getMonth() == iMonth && eventsArray.get(i).getStartTimestamp().getDate() == iDay) {
 				emptyRow++;
-				System.out.println("kører første if" + emptyRow);
 			}
 		}
 		
@@ -162,13 +193,11 @@ public class ActionController implements ActionListener {
 				
 				String start = eventsArray.get(i).getStartTimestamp().getHours() + ":" + eventsArray.get(i).getStartTimestamp().getMinutes();
 				String end = eventsArray.get(i).getEndTimestamp().getHours() + ":" + eventsArray.get(i).getEndTimestamp().getMinutes();
-				
-				System.out.println("if kører" + Eventrow);
-				
+								
 				data[Eventrow][0] = start;
 				data[Eventrow][1] = end;
 				data[Eventrow][2] = eventsArray.get(i).getCalendarId();
-				data[Eventrow][3] = eventsArray.get(i).getEventId();
+				data[Eventrow][3] = eventsArray.get(i).getId();
 				data[Eventrow][4] = eventsArray.get(i).getTitle();
 				data[Eventrow][5] = eventsArray.get(i).getDescription();
 				data[Eventrow][6] = eventsArray.get(i).getLocation();

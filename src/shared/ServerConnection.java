@@ -44,15 +44,19 @@ public class ServerConnection {
 			e.printStackTrace();
 		}
 		String modifiedSentence = null;
+		String decrypted = null;
 
 		try {
 			modifiedSentence = inFromServer.readLine();
+			System.out.println("encrypted from server" + modifiedSentence);
+			decrypted = crypt(modifiedSentence.getBytes());
+			System.out.println("decrypted" + decrypted);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return modifiedSentence;
+		return decrypted;
 	}
 
 	public byte[] Encryption(String gsonString) {
@@ -63,4 +67,23 @@ public class ServerConnection {
 			encrypted[i] = (byte) (encrypted[i] ^ key);
 		return encrypted;
 	}
+	
+	public String crypt(byte[] b)
+	{
+//		Defines the decryption value of the byte
+		String crypKey = "3.014";
+		double keyAsDouble = Double.parseDouble(crypKey);
+		byte ff = (byte) keyAsDouble;
+//		Generates for loop containing decryption value
+		for(int i = 0 ; i<b.length ; i++)
+		{
+			b[i] = (byte)(b[i]^ff);
+		}
+//		Generates new String without any white spaces following or leading
+		String encrypted = new String(b).trim();
+//		Returns decrypted String
+		return encrypted;
+	}
+
+	
 }

@@ -27,14 +27,7 @@ public class ObjectTranslator {
 		sc.Send(gsonString);
 		return sc.Recieve();
 	}
-
-	public String getForecast() {
-		simple.setOverallID("getForecast");
-		String gsonString = gson.toJson(simple);
-		sc.Send(gsonString);
-		return sc.Recieve();
-	}
-
+	
 	public String getEvents(int userID) {
 		simple.setOverallID("getEvents");
 		simple.setUserId(userID);
@@ -48,6 +41,31 @@ public class ObjectTranslator {
 		String gsonString = gson.toJson(simple);
 		sc.Send(gsonString);
 		return sc.Recieve();
+	}
+
+	public String getForecast(int selectedMonth, int selectedDay) {
+		System.out.println(selectedMonth + " " + selectedDay);
+		simple.setOverallID("getForecast");
+		simple.setYear(2014);
+		simple.setMonth(selectedMonth);
+		simple.setDay(selectedDay);
+		
+		String gsonString = gson.toJson(simple);
+		sc.Send(gsonString);
+		return sc.Recieve();
+	}
+
+	public String getNote(int eventID) {
+		simple.setId(eventID);
+		simple.setOverallID("getNote");
+		
+		String gsonString = gson.toJson(simple);
+		sc.Send(gsonString);
+		return sc.Recieve();
+	}
+
+	public void saveNote(String newNote) {
+		
 	}
 
 }

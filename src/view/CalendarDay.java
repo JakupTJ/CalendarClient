@@ -11,22 +11,32 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 public class CalendarDay extends JPanel{
 	
 	public static final String WEEK = "week";
+	public static final String NOTE = "note";
+	public static final String SET = "set";
 	
 	private ActionController actionController;
 	private JLabel lblDayView;
 	private JPanel eventPanel;
 	private JPanel activePanel;
-	private JTable resultTable;
-	private JScrollPane scrollPane;
+	private JTable eventTable;
+	private JScrollPane eventScroll;
 	private JButton btnCreate;
 	private JButton btnDelete;
 	private JButton btnBack;
+	private JButton btnNote;
+	private JButton btnSet;
+	private JLabel forecastLbl;
+	private JLabel noteLbl;
+	private JTextField setTxtField;
+	private JPanel bottomPanel;
+	private JPanel infoPanel;
 	
 	public CalendarDay (ActionController actionController) {
 		this.actionController = actionController;
@@ -38,11 +48,15 @@ public class CalendarDay extends JPanel{
 		
 		
 		eventPanel = new JPanel();
-		eventPanel.setVisible(true);
 		add(eventPanel, BorderLayout.CENTER);
+		eventPanel.setLayout(new BorderLayout(0, 0));
+		
+		bottomPanel = new JPanel();
+		add(bottomPanel, BorderLayout.SOUTH);
+		bottomPanel.setLayout(new BorderLayout(0, 0));
 		
 		activePanel = new JPanel();
-		add(activePanel, BorderLayout.SOUTH);
+		bottomPanel.add(activePanel, BorderLayout.SOUTH);
 		
 		btnCreate = new JButton("Create event");
 		activePanel.add(btnCreate);
@@ -55,29 +69,55 @@ public class CalendarDay extends JPanel{
 		btnBack.setActionCommand(WEEK);
 		activePanel.add(btnBack);
 		
+		btnNote = new JButton("View note");
+		btnNote.addActionListener(actionController);
+		btnNote.setActionCommand(NOTE);
+		activePanel.add(btnNote);
+		
+		infoPanel = new JPanel();
+		bottomPanel.add(infoPanel, BorderLayout.NORTH);
+		
+		forecastLbl = new JLabel("");
+		forecastLbl.setHorizontalAlignment(SwingConstants.LEFT);
+		infoPanel.add(forecastLbl, BorderLayout.BEFORE_FIRST_LINE);
+		
+		noteLbl = new JLabel("");
+		infoPanel.add(noteLbl);
+		noteLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		btnSet = new JButton("Create new note");
+		infoPanel.add(btnSet);
+		btnSet.setVisible(false);
+		btnSet.addActionListener(actionController);
+		btnSet.setActionCommand(SET);
+		
+		setTxtField = new JTextField();
+		setTxtField.setText("\"Add new note\"");
+		infoPanel.add(setTxtField);
+		setTxtField.setVisible(false);
 		
 		
 	}
-	
+
 	public void refreshEvents(Object[][] data,String[] header) {
 		
-		if(resultTable != null){
-			eventPanel.remove(resultTable);
-			eventPanel.remove(scrollPane);
+		if(eventTable != null){
+			eventPanel.remove(eventTable);
+			eventPanel.remove(eventScroll);
 		}
-		resultTable = new JTable(data,header);
-		resultTable.setPreferredScrollableViewportSize(new Dimension(800,70));
-		resultTable.setFillsViewportHeight(true);
+		eventTable = new JTable(data,header);
+		eventTable.setPreferredScrollableViewportSize(new Dimension(800,70));
+		eventTable.setFillsViewportHeight(true);
 		
-		scrollPane = new JScrollPane(resultTable);
-		scrollPane.setBounds(26,30,398,120);
-		eventPanel.add(scrollPane);
+		eventScroll = new JScrollPane(eventTable);
+		eventScroll.setBounds(26,30,930,280);
+		eventPanel.add(eventScroll);
 		
 	}
 	
 	public void removeTable() {
-		eventPanel.remove(resultTable);
-		eventPanel.remove(scrollPane);
+		eventPanel.remove(eventTable);
+		eventPanel.remove(eventScroll);
 	}
 	
 	public JLabel getLblDayView() {
@@ -102,6 +142,37 @@ public class CalendarDay extends JPanel{
 
 	public void setActivePanel(JPanel activePanel) {
 		this.activePanel = activePanel;
+	}
+	public JLabel getForecastLbl() {
+		return forecastLbl;
+	}
+
+	public void setForecastLbl(JLabel forecastLbl) {
+		this.forecastLbl = forecastLbl;
+	}
+
+	public JLabel getNoteLbl() {
+		return noteLbl;
+	}
+
+	public void setNoteLbl(JLabel noteLbl) {
+		this.noteLbl = noteLbl;
+	}
+
+	public JButton getBtnSet() {
+		return btnSet;
+	}
+
+	public void setBtnSet(JButton btnSet) {
+		this.btnSet = btnSet;
+	}
+
+	public JTextField getSetTxtField() {
+		return setTxtField;
+	}
+
+	public void setSetTxtField(JTextField setTxtField) {
+		this.setTxtField = setTxtField;
 	}
 
 }

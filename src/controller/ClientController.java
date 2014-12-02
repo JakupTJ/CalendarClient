@@ -19,11 +19,9 @@ public class ClientController {
 		return ot.checkLog(email, password);
 	}
 
-	public String getForecast() {
-		String fc;
-		fc = ot.getForecast();
-		return fc;
-
+	public String getForecast(int selectedMonth, int selectedDay) {
+		System.out.println("getForecast cc" + selectedMonth + " h" + selectedDay);
+		return ot.getForecast(selectedMonth, selectedDay);
 	}
 
 	public String getEvents(int userID) {
@@ -34,5 +32,14 @@ public class ClientController {
 
 	public String getQotd() {
 		return ot.getQotd();
+	}
+
+	public String getNote(int eventID) {
+		System.out.println(eventID);
+		return ot.getNote(eventID);
+	}
+
+	public void saveNote(String newNote) {
+		ot.saveNote(newNote);		
 	}
 }

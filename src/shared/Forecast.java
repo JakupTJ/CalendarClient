@@ -35,6 +35,9 @@ public class Forecast implements Serializable{
 	public void setOverallID(String overallID) {
 		this.overallID = overallID;
 	}
+	public String toString() {
+		return date + "Today's forecast" +  "degrees: " + celsius + desc;
+	}
 }
 
 	

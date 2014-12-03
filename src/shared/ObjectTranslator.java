@@ -71,7 +71,7 @@ public class ObjectTranslator {
 	}
 
 	public void delEvent(int eventID) {
-		event.setEventid(eventID);
+		event.setId(eventID);
 		event.setOverallID("deleteEvent");
 		
 		String gsonString = gson.toJson(event);

@@ -81,8 +81,14 @@ public class ActionController implements ActionListener {
 				screen.getCalendarWeek().refreshDates(+1);
 			}
 		else if (cmd.equals(CalendarWeek.GO)) {
+			int year = Integer.parseInt(screen.getCalendarWeek().getYearTxt().getText());
 			int weeknumber = Integer.parseInt(screen.getCalendarWeek().getWeekTxt().getText());
-			screen.getCalendarWeek().goWeek(weeknumber);
+			if(weeknumber > 52) {
+				
+			}
+			else{
+			screen.getCalendarWeek().goWeek(weeknumber,year);
+			}
 		}
 		else if (cmd.equals(CalendarDay.WEEK)) {
 			screen.getCalendarDay().getNotePanel().setVisible(false);

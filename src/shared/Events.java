@@ -9,7 +9,7 @@ public class Events  implements java.io.Serializable {
 	private  final long serialVersionUID = 3L;
 	private String overallID = "Event";
 	private int id;
-    private int eventid;
+    private String eventid;
     private int calendarId;
     private int createdby;
     private String description;
@@ -34,7 +34,7 @@ public class Events  implements java.io.Serializable {
 		this.overallID = overallID;
 	}
 
-	public void setEventid(int event_id){
+	public void setEventid(String event_id){
         this.eventid = event_id;
     }
     public int getId(){
@@ -89,7 +89,7 @@ public class Events  implements java.io.Serializable {
         return end;
     }
 
-	public int getEventId() {
+	public String getEventId() {
 		return eventid;
 	}
 	public void setId(int id) {

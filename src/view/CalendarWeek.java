@@ -57,6 +57,8 @@ public class CalendarWeek extends JPanel {
 
 	private Calendar cal = new GregorianCalendar();
 	private ActionController actionController;
+	private JLabel lblYear;
+	private JTextField yearTxt;
 	
 
 	public CalendarWeek(ActionController actionController) {
@@ -126,11 +128,22 @@ public class CalendarWeek extends JPanel {
 		// Info labels to activePanel
 		weekLbl = new JLabel("Week:");
 		weekLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		weekLbl.setPreferredSize(new Dimension(10,10));
+
 		activePanel.add(weekLbl);
 
 		// Interactive TextField to activePanel
 		weekTxt = new JTextField("" + START_WEEK);
+		
 		activePanel.add(weekTxt);
+		
+		lblYear = new JLabel("Year:");
+		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
+		lblYear.setPreferredSize(new Dimension(10,10));
+		activePanel.add(lblYear);
+		
+		yearTxt = new JTextField("" + START_YEAR);
+		activePanel.add(yearTxt);
 
 		quotePanel = new JPanel();
 		quotePanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
@@ -202,19 +215,30 @@ public class CalendarWeek extends JPanel {
 	public void refreshDates(int nextWeek) {
 
 		START_WEEK += nextWeek;
-		insertdates(START_WEEK, START_YEAR);
+	
 
 		if(START_WEEK>52) {
 			START_WEEK = 1;
+			START_YEAR++;
+			insertdates(START_WEEK, START_YEAR);
+		}
+		else if(START_WEEK< 1) {
+			START_WEEK = 52;
+			START_YEAR--;
+			insertdates(START_WEEK, START_YEAR);
 		}
 		String stringWeek = String.valueOf(START_WEEK);
-		
+		String stringYear = String.valueOf(START_YEAR);
 
 		weekTxt.setText(stringWeek);
+		yearTxt.setText(stringYear);
 	}
-	public void goWeek(int weeknumber) {
-		START_WEEK += weeknumber;
-		insertdates(START_WEEK, START_YEAR);
+	public void goWeek(int weeknumber, int year) {
+		System.out.println("her"+weeknumber + year);
+	
+			System.out.println(year);
+			insertdates(weeknumber, year);
+		
 	}
 	
 	public static int getSTART_YEAR() {
@@ -263,5 +287,11 @@ public class CalendarWeek extends JPanel {
 
 	public JLabel getQotdLbl() {
 		return qotdLbl;
+	}
+
+
+
+	public JTextField getYearTxt() {
+		return yearTxt;
 	}
 }

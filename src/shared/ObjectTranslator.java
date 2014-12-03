@@ -24,36 +24,34 @@ public class ObjectTranslator {
 		currentUser.setEmail(email);
 		currentUser.setPassword(password);
 		String gsonString = gson.toJson(currentUser);
-		System.out.println(gsonString);
-		sc.Send(gsonString);
-		return sc.Recieve();
+		sc.send(gsonString);
+		return sc.recieve();
 	}
 	
 	public String getEvents(int userID) {
 		simple.setOverallID("getEvents");
 		simple.setUserId(userID);
 		String gsonString = gson.toJson(simple);
-		sc.Send(gsonString);
-		return sc.Recieve();
+		sc.send(gsonString);
+		return sc.recieve();
 	}
 
 	public String getQotd() {
 		simple.setOverallID("getQuote");
 		String gsonString = gson.toJson(simple);
-		sc.Send(gsonString);
-		return sc.Recieve();
+		sc.send(gsonString);
+		return sc.recieve();
 	}
 
 	public String getForecast(int selectedMonth, int selectedDay, int selectedYear) {
-		System.out.println(selectedMonth + " " + selectedDay);
 		simple.setOverallID("getForecast");
 		simple.setYear(selectedYear);
 		simple.setMonth(selectedMonth);
 		simple.setDay(selectedDay);
 		
 		String gsonString = gson.toJson(simple);
-		sc.Send(gsonString);
-		return sc.Recieve();
+		sc.send(gsonString);
+		return sc.recieve();
 	}
 
 	public String getNote(int eventID) {
@@ -61,15 +59,23 @@ public class ObjectTranslator {
 		simple.setOverallID("getNote");
 		
 		String gsonString = gson.toJson(simple);
-		sc.Send(gsonString);
-		return sc.Recieve();
+		sc.send(gsonString);
+		return sc.recieve();
 	}
 
 	public void saveNote(String newNote) {
 		note.setText(newNote);
 		
 		String gsonString = gson.toJson(note);
-		sc.Send(gsonString);		
+		sc.send(gsonString);		
+	}
+
+	public void delEvent(int eventID) {
+		event.setEventid(eventID);
+		event.setOverallID("deleteEvent");
+		
+		String gsonString = gson.toJson(event);
+		sc.send(gsonString);
 	}
 
 }

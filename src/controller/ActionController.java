@@ -94,17 +94,36 @@ public class ActionController implements ActionListener {
 			}
 		else if (cmd.equals(CalendarDay.NOTE)) {
 			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"What event do need notes for?", null));
+					"What event do you need notes for?", null));
+			int i = 0;
+			try{
+			i = eventID; 
+
 			String n = cc.getNote(eventID);
 			Note note = gson.fromJson(n, Note.class);
 			screen.getCalendarDay().getNotePanel().setVisible(true);
 			screen.getCalendarDay().getNoteLbl().setVisible(true);
 			screen.getCalendarDay().getBtnSet().setVisible(true);
 			screen.getCalendarDay().getSetTxtField().setVisible(true);
+			screen.getCalendarDay().getBtnDelNote().setVisible(true);
 			screen.getCalendarDay().getNoteLbl().setText(note.getText());
 
-			
 			}
+			catch(NumberFormatException nfe){
+				JOptionPane.showMessageDialog( screen, "You must enter a number");
+			}
+		}
+		
+		else if (cmd.equals(CalendarDay.CREATEEVE)) {
+						screen.show(Screen.CREATEEVENT);
+		}
+		
+		else if (cmd.equals(CalendarDay.DELETEEVE)) {
+			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
+					"What event do you want to delete?", null));
+			cc.delEvent(eventID);
+		}
+		
 		else if (cmd.equals(CalendarDay.SET)) {
 			String newNote = screen.getCalendarDay().getSetTxtField().getText();
 			screen.getCalendarDay().getNoteLbl().setText(newNote);
@@ -162,12 +181,19 @@ public class ActionController implements ActionListener {
 				String weather = cc.getForecast(selectedMonth+1, selectedDay, selectedYear);
 				
 				Forecast fc = gson.fromJson(weather, Forecast.class);
+				if( fc != null) {
 				screen.getCalendarDay().getForecastTxt().setText(fc.toString());
-				
+				screen.show(Screen.CALENDARDAY);
+				}
+				else {
+					screen.getCalendarDay().getForecastTxt().setText("Forecast not available");
+					screen.show(Screen.CALENDARDAY);
+
+				}
 				// get notes and insert into day panel
 
 				
-				screen.show(Screen.CALENDARDAY);
+				
 				
 				
 				

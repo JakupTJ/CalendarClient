@@ -41,4 +41,8 @@ public class ClientController {
 	public void saveNote(String newNote) {
 		ot.saveNote(newNote);		
 	}
+
+	public void delEvent(int eventID) {
+		ot.delEvent(eventID);		
+	}
 }

@@ -204,7 +204,11 @@ public class CalendarWeek extends JPanel {
 		START_WEEK += nextWeek;
 		insertdates(START_WEEK, START_YEAR);
 
+		if(START_WEEK>52) {
+			START_WEEK = 1;
+		}
 		String stringWeek = String.valueOf(START_WEEK);
+		
 
 		weekTxt.setText(stringWeek);
 	}

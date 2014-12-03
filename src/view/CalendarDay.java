@@ -32,6 +32,9 @@ public class CalendarDay extends JPanel{
 	public static final String WEEK = "week";
 	public static final String NOTE = "note";
 	public static final String SET = "set";
+	public static final String CREATEEVE = "createeve";
+	public static final String DELETEEVE = "deleteeve";
+	public static final String DELNOTE = "delnote";
 	
 	private ActionController actionController;
 	private JLabel lblDayView;
@@ -44,6 +47,7 @@ public class CalendarDay extends JPanel{
 	private JButton btnBack;
 	private JButton btnNote;
 	private JButton btnSet;
+	private JButton btnDelNote;
 	private JTextArea forecastTxt;
 	private JTextArea noteTxt;
 	private JTextField setTxtField;
@@ -53,6 +57,7 @@ public class CalendarDay extends JPanel{
 	
 	public CalendarDay (ActionController actionController) {
 		this.actionController = actionController;
+		setSize(Screen.WITDH,Screen.HEIGHT);
 		setLayout(new BorderLayout());
 		
 		lblDayView = new JLabel("Day view");
@@ -89,9 +94,13 @@ public class CalendarDay extends JPanel{
 		bottomPanel.add(activePanel, BorderLayout.SOUTH);
 		
 		btnCreate = new JButton("Create event");
+		btnCreate.addActionListener(actionController);
+		btnCreate.setActionCommand(CREATEEVE);
 		activePanel.add(btnCreate);
 		
 		btnDelete = new JButton("Delete event");
+		btnDelete.addActionListener(actionController);
+		btnDelete.setActionCommand(DELETEEVE);
 		activePanel.add(btnDelete);
 		
 		btnBack = new JButton("Week View");
@@ -120,6 +129,12 @@ public class CalendarDay extends JPanel{
 		btnSet.setVisible(false);
 		btnSet.addActionListener(actionController);
 		btnSet.setActionCommand(SET);
+		
+		btnDelNote = new JButton("Delete Note");
+		btnDelNote.setVisible(false);
+		btnDelNote.addActionListener(actionController);
+		btnDelNote.setActionCommand(DELNOTE);
+		infoPanel.add(btnDelNote);
 		
 		setTxtField = new JTextField();
 		setTxtField.setText("\"Add new note\"");
@@ -217,6 +232,18 @@ public class CalendarDay extends JPanel{
 
 	public void setNotePanel(JPanel notePanel) {
 		this.notePanel = notePanel;
+	}
+
+
+
+	public JButton getBtnDelNote() {
+		return btnDelNote;
+	}
+
+
+
+	public void setBtnDelNote(JButton btnDelNote) {
+		this.btnDelNote = btnDelNote;
 	}
 
 }

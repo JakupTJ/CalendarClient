@@ -9,7 +9,7 @@ public class Events  implements java.io.Serializable {
 	private  final long serialVersionUID = 3L;
 	private String overallID = "Event";
 	private int id;
-    private String eventid;
+    private int eventid;
     private int calendarId;
     private int createdby;
     private String description;
@@ -23,23 +23,6 @@ public class Events  implements java.io.Serializable {
     private String type;
     private boolean active;
     
-    
-    public Events(int id, String eventid, int calendarId, int createdby,
-			String title, String description, String location, Timestamp start, Timestamp end, String type, boolean active) {
-		super();
-		this.id = id;
-		this.eventid = eventid;
-		this.calendarId = calendarId;
-		this.createdby = createdby;
-		this.description = description;
-		this.title = title;
-		this.location = location;
-		this.startTimestamp = start;
-		this.endTimestamp = end;
-		this.type = type;
-		this.active = active;
-	}
-    
     public Events(){
     	
     }
@@ -51,7 +34,7 @@ public class Events  implements java.io.Serializable {
 		this.overallID = overallID;
 	}
 
-	public void setEventid(String event_id){
+	public void setEventid(int event_id){
         this.eventid = event_id;
     }
     public int getId(){
@@ -106,7 +89,7 @@ public class Events  implements java.io.Serializable {
         return end;
     }
 
-	public String getEventId() {
+	public int getEventId() {
 		return eventid;
 	}
 	public void setId(int id) {

@@ -11,7 +11,7 @@ public class ServerConnection {
 	private Socket clientSocket;
 	private DataOutputStream outToServer;
 
-	public void Connect() {
+	public void connect() {
 		try {
 			clientSocket = new Socket("localhost", 8888);
 			outToServer = new DataOutputStream(clientSocket.getOutputStream());
@@ -20,11 +20,11 @@ public class ServerConnection {
 		}
 	}
 
-	public void Send(String gsonString) {
+	public void send(String gsonString) {
 		
-		Connect();
+		connect();
 
-		byte[] encrypted = Encryption(gsonString);
+		byte[] encrypted = encryption(gsonString);
 		try {
 			outToServer.write(encrypted);
 			outToServer.flush();
@@ -34,7 +34,7 @@ public class ServerConnection {
 
 	}
 
-	public String Recieve() {
+	public String recieve() {
 		BufferedReader inFromServer = null;
 		try {
 			inFromServer = new BufferedReader(new InputStreamReader(
@@ -59,7 +59,7 @@ public class ServerConnection {
 		return decrypted;
 	}
 
-	public byte[] Encryption(String gsonString) {
+	public byte[] encryption(String gsonString) {
 		byte[] input = gsonString.getBytes();
 		byte key = (byte) 3.014;
 		byte[] encrypted = input;

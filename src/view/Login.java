@@ -30,7 +30,7 @@ public class Login extends JPanel {
 	public Login(ActionController actionController) {
 		this.actionController = actionController;
 		setLayout(null);
-		setSize(WIDTH, HEIGHT);
+		setSize(Screen.WIDTH, Screen.HEIGHT);
 
 		JLabel label = new JLabel("Login");
 		label.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));

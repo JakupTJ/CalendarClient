@@ -26,6 +26,9 @@ import controller.ActionController;
 import java.awt.FlowLayout;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class CalendarWeek extends JPanel {
 
@@ -74,7 +77,7 @@ public class CalendarWeek extends JPanel {
 		// Add headerPanel to top panel
 		headerPanel = new JPanel(new GridLayout(0, 7));
 		headerPanel.setPreferredSize(new Dimension(10, 35));
-		headerPanel.setBackground(Color.GRAY);
+//		headerPanel.setBackground(Color.GRAY);
 		headerPanel.setVisible(true);
 		add(headerPanel, BorderLayout.NORTH);
 
@@ -85,6 +88,7 @@ public class CalendarWeek extends JPanel {
 
 		// add calendarPanel to main panel
 		calendarPanel = new JPanel(new GridLayout(0, 7));
+		calendarPanel.setBorder(new MatteBorder(0, 20, 0, 20, (Color) null));
 		calendarPanel.setVisible(true);
 		add(calendarPanel, BorderLayout.CENTER);
 		// Insert buttons as weekdays
@@ -98,6 +102,7 @@ public class CalendarWeek extends JPanel {
 		insertdates(START_WEEK, START_YEAR);
 
 		bottomPanel = new JPanel();
+		bottomPanel.setBorder(new MatteBorder(0, 15, 5, 15, (Color) null));
 		bottomPanel.setLayout(new BorderLayout());
 		add(bottomPanel, BorderLayout.SOUTH);
 

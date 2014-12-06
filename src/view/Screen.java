@@ -41,13 +41,13 @@ public class Screen extends JFrame {
 		cl = (CardLayout) getContentPane().getLayout();
 
 		// Objects of JPanels
-//		login = new Login(actionController);
+		login = new Login(actionController);
 		calendarWeek = new CalendarWeek(actionController);
 		calendarDay = new CalendarDay(actionController);
 		createEvent = new CreateEvent(actionController);
 		
 		// adding JPanels
-//		contentPane.add(login, LOGIN);
+		contentPane.add(login, LOGIN);
 		contentPane.add(calendarWeek, CALENDARWEEK);
 		contentPane.add(calendarDay, CALENDARDAY);
 		contentPane.add(createEvent, CREATEEVENT);

@@ -1,0 +1,14 @@
+{
+	"host": "db23.meebox.net",
+	"port": "3306",
+	"username": "danielfr_xa08",
+	"password": "z11EhE3TJq0&r6",	
+	"ffcryptkey": "3.1470",
+	"weather_expiration_time": "3600"
+	"weather_lat": "55.681589",
+	"weather_lon": "12.529092",
+	"weather_future_in_days": "14",
+	"dbname": "danielfr_cbscalendar",
+	"cbs_calendar_hashkey": "v.eRyzeKretW0r_t",
+	"encrypt_key": "secretstuffisawesome"
+}

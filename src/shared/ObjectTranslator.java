@@ -109,10 +109,12 @@ public class ObjectTranslator {
 		return sc.recieve();
 	}
 
-	public String shareCal(int calID, int userID) {
+	public String shareCal(int userID, int calID) {
 		simple.setOverallID("shareCalendar");
 		simple.setUserId(userID);
-		simple.setCalendarid(calID);
+		simple.setCalendarId(calID);
+		
+		System.out.println("I OT:"+"USER ID:"+userID+"CAL ID:"+calID);
 		
 		String gsonString = gson.toJson(simple);
 		sc.send(gsonString);

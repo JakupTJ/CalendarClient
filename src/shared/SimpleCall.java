@@ -10,7 +10,7 @@ public class SimpleCall implements Serializable {
 	private int id;
 	private int eventid;
 	private int userId;
-	private int calendarid;
+	private int calendarId;
 	private Timestamp date;
 	private int year;
 	private int month;
@@ -52,12 +52,12 @@ public class SimpleCall implements Serializable {
 		this.userId = userId;
 	}
 
-	public int getCalendarid() {
-		return calendarid;
+	public int getCalendarId() {
+		return calendarId;
 	}
 
-	public void setCalendarid(int calendarid) {
-		this.calendarid = calendarid;
+	public void setCalendarId(int calendarId) {
+		this.calendarId = calendarId;
 	}
 
 	public long getSerialVersionUID() {

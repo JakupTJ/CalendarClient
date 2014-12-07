@@ -58,7 +58,7 @@ public class ClientController {
 		return ot.deleteCal(calID, userID);
 	}
 
-	public String shareCal(int calID, int userID) {
-		return ot.shareCal(calID, userID);
+	public String shareCal(int userID, int calID) {
+		return ot.shareCal(userID, calID);
 	}
 }

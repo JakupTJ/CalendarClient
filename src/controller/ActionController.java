@@ -17,6 +17,7 @@ import shared.User;
 import view.CalendarDay;
 import view.CalendarSettings;
 import view.CalendarWeek;
+import view.CreateEvent;
 import view.Login;
 import view.Screen;
 
@@ -142,30 +143,20 @@ public class ActionController implements ActionListener {
 		else if (cmd.equals(CalendarSettings.SHARECAL)) {
 			int calID = Integer.parseInt(JOptionPane.showInputDialog(null,
 					"What calendar do you want to share?", null));
-			int userID = currentUser.getUserid();
-			String calReturn = cc.shareCal(calID, userID);
-			if(calReturn.equals("calendar shared")) {
-				insertCalendars();
+			int userID = 2;
+			String calReturn = cc.shareCal(userID, calID);
+			if(calReturn.equals("calendar_shared")) {
+				System.out.println("yo");
 			}
 		}
-		else if (cmd.equals(CalendarSettings.DELETEEVE)) {
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"What event do you want to delete?", null));
-			int userID = currentUser.getUserid();
-			String eventReturn = cc.delEvent(eventID);
-			if(eventReturn.equals("event deleted")) {
-				insertCalendars();
-			}
-		}
-		
-		else if (cmd.equals(CalendarSettings.SETNOTE)) {
-			String newNote = screen.getCalendarDay().getSetTxtField().getText();
-			screen.getCalendarDay().getNoteLbl().setText(newNote);
-			cc.saveNote(newNote);
-			
-		}
-//		else if (cmd.equals(CalendarWeek.SHARECAL)) {
-			
+//		else if (cmd.equals(CreateEvent.DELETEEVE)) {
+//			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
+//					"What event do you want to delete?", null));
+//			int userID = currentUser.getUserid();
+//			String eventReturn = cc.delEvent(eventID);
+//			if(eventReturn.equals("event deleted")) {
+//				insertCalendars();
+//			}
 //		}
 		else if (cmd.equals(CalendarDay.WEEK)) {
 			screen.getCalendarDay().getNotePanel().setVisible(false);
@@ -175,6 +166,12 @@ public class ActionController implements ActionListener {
 			screen.getCalendarDay().getNoteLbl().setText("");
 				screen.show(Screen.CALENDARWEEK);
 			}
+		
+		else if (cmd.equals(CalendarDay.SETNOTE)) {
+			String newNote = screen.getCalendarDay().getSetTxtField().getText();
+			screen.getCalendarDay().getNoteLbl().setText(newNote);
+			cc.saveNote(newNote);	
+		}
 		else if (cmd.equals(CalendarDay.NOTE)) {
 			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
 					"What event do you need notes for?", null));

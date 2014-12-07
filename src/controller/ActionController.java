@@ -54,14 +54,10 @@ public class ActionController implements ActionListener {
 			if (!recieve.equals("invalid")) {
 				
 				currentUser = (User) gson.fromJson(recieve, User.class);
+								
 				
-				
-				System.out.println(currentUser.getEmail());
-				
-				
-//				String qotd = cc.getQotd();
-//				
-//				screen.getCalendarWeek().getQotdLbl().setText(qotd);
+				String qotd = cc.getQotd();	
+				screen.getCalendarWeek().getQotdLbl().setText(qotd);
 
 				screen.show(Screen.CALENDARWEEK);
 				
@@ -130,7 +126,7 @@ public class ActionController implements ActionListener {
 			cc.delEvent(eventID);
 		}
 		
-		else if (cmd.equals(CalendarDay.SET)) {
+		else if (cmd.equals(CalendarDay.SETNOTE)) {
 			String newNote = screen.getCalendarDay().getSetTxtField().getText();
 			screen.getCalendarDay().getNoteLbl().setText(newNote);
 			cc.saveNote(newNote);

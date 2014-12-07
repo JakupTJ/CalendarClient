@@ -31,7 +31,7 @@ public class CalendarDay extends JPanel{
 	
 	public static final String WEEK = "week";
 	public static final String NOTE = "note";
-	public static final String SET = "set";
+	public static final String SETNOTE = "setnote";
 	public static final String CREATEEVE = "createeve";
 	public static final String DELETEEVE = "deleteeve";
 	public static final String DELNOTE = "delnote";
@@ -128,7 +128,7 @@ public class CalendarDay extends JPanel{
 		infoPanel.add(btnSet);
 		btnSet.setVisible(false);
 		btnSet.addActionListener(actionController);
-		btnSet.setActionCommand(SET);
+		btnSet.setActionCommand(SETNOTE);
 		
 		btnDelNote = new JButton("Delete Note");
 		btnDelNote.setVisible(false);

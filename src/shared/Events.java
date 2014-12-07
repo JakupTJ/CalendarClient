@@ -118,15 +118,13 @@ public class Events  implements java.io.Serializable {
 		
 		return endTimestamp;
 	}
-	@Override
-	public String toString() {
-		return "Event [serialVersionUID=" + serialVersionUID + ", overallID="
-				+ overallID + ", id=" + id + ", eventid=" + eventid
-				+ ", calendarId=" + calendarId + ", createdby=" + createdby
-				+ ", description=" + description + ", title=" + title
-				+ ", location=" + location + ", ts=" + ts + ", start=" + start
-				+ ", end=" + end + ", type=" + type + ", active=" + active
-				+ "]";
+
+	public void setStartTimestamp(Timestamp startTimestamp) {
+		this.startTimestamp = startTimestamp;
+	}
+
+	public void setEndTimestamp(Timestamp endTimestamp) {
+		this.endTimestamp = endTimestamp;
 	}
 
 }

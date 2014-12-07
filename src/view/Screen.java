@@ -80,4 +80,8 @@ public class Screen extends JFrame {
 		return calSettings;
 	}
 
+	public CreateEvent getCreateEvent() {
+		return createEvent;
+	}
+
 }

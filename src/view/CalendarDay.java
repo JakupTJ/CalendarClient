@@ -32,8 +32,7 @@ public class CalendarDay extends JPanel{
 	public static final String WEEK = "week";
 	public static final String NOTE = "note";
 	public static final String SETNOTE = "setnote";
-	public static final String CREATEEVE = "createeve";
-	public static final String DELETEEVE = "deleteeve";
+	public static final String EVENTSETTING = "eventSetting";
 	public static final String DELNOTE = "delnote";
 	
 	private ActionController actionController;
@@ -42,8 +41,7 @@ public class CalendarDay extends JPanel{
 	private JPanel activePanel;
 	private JTable eventTable;
 	private JScrollPane eventScroll;
-	private JButton btnCreate;
-	private JButton btnDelete;
+	private JButton btnEventSetting;
 	private JButton btnBack;
 	private JButton btnNote;
 	private JButton btnSet;
@@ -93,15 +91,10 @@ public class CalendarDay extends JPanel{
 		activePanel = new JPanel();
 		bottomPanel.add(activePanel, BorderLayout.SOUTH);
 		
-		btnCreate = new JButton("Create event");
-		btnCreate.addActionListener(actionController);
-		btnCreate.setActionCommand(CREATEEVE);
-		activePanel.add(btnCreate);
-		
-		btnDelete = new JButton("Delete event");
-		btnDelete.addActionListener(actionController);
-		btnDelete.setActionCommand(DELETEEVE);
-		activePanel.add(btnDelete);
+		btnEventSetting = new JButton("Event Settings");
+		btnEventSetting.addActionListener(actionController);
+		btnEventSetting.setActionCommand(EVENTSETTING);
+		activePanel.add(btnEventSetting);
 		
 		btnBack = new JButton("Week View");
 		btnBack.addActionListener(actionController);

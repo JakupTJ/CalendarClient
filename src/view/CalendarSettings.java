@@ -18,14 +18,11 @@ import java.awt.CardLayout;
 
 public class CalendarSettings extends JPanel{
 
-	public static final String CREATEEVE = "createeve";
-	public static final String DELETEEVE = "deleteeve";
-	public static final String DELNOTE = "delnote";
+	public static final String EVENTSETTINGS = "eventSettings";
 	public static final String CREATECAL = "createCal";
 	public static final String DELETECAL = "deleteCal";
 	public static final String SHARECAL = "shareCal";
-	public static final String WEEK = "week";
-	public static final String SETNOTE = "setNote";
+	public static final String CALWEEK = "calweek";
 
 
 	
@@ -35,12 +32,11 @@ public class CalendarSettings extends JPanel{
 	private JPanel activePanel;
 	private JTable calTable;
 	private JScrollPane scrollPane;
-	private JButton btnCreate;
-	private JButton btnDelete;
 	private JButton btnBack;
 	private JButton btnCreateCalendar;
 	private JButton btnDeleteCalendar;
 	private JButton btnShareCalendar;
+	private JPanel bottomPanel;
 	
 	public CalendarSettings (ActionController actionController) {
 		this.actionController = actionController;
@@ -48,6 +44,7 @@ public class CalendarSettings extends JPanel{
 		setLayout(new BorderLayout());
 		
 		lblDayView = new JLabel("Calendar settings");
+		lblDayView.setPreferredSize(new Dimension(0,30));
 		lblDayView.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblDayView, BorderLayout.NORTH);
 		
@@ -58,9 +55,6 @@ public class CalendarSettings extends JPanel{
 		
 		activePanel = new JPanel();
 		eventPanel.add(activePanel, BorderLayout.WEST);
-		
-		btnCreate = new JButton("Create event");
-		btnCreate.addActionListener(actionController);
 		
 		btnCreateCalendar = new JButton("Create Calendar");
 		btnCreateCalendar.addActionListener(actionController);
@@ -78,18 +72,13 @@ public class CalendarSettings extends JPanel{
 		btnShareCalendar.setActionCommand(SHARECAL);
 		activePanel.add(btnShareCalendar);
 		
-		btnCreate.setActionCommand(CREATEEVE);
-		activePanel.add(btnCreate);
-		
-		btnDelete = new JButton("Delete event");
-		btnDelete.addActionListener(actionController);
-		btnDelete.setActionCommand(DELETEEVE);
-		activePanel.add(btnDelete);
+		bottomPanel = new JPanel();
+		eventPanel.add(bottomPanel, BorderLayout.SOUTH);
 		
 		btnBack = new JButton("Week View");
+		bottomPanel.add(btnBack);
 		btnBack.addActionListener(actionController);
-		btnBack.setActionCommand(WEEK);
-		activePanel.add(btnBack);
+		btnBack.setActionCommand(CALWEEK);
 		
 	}	
 
@@ -109,7 +98,9 @@ public class CalendarSettings extends JPanel{
 		
 	}
 	public void removeTable() {
-		eventPanel.remove(calTable);
-		eventPanel.remove(scrollPane);
+		if(calTable != null){
+			eventPanel.remove(calTable);
+			eventPanel.remove(scrollPane);
+		}
 	}
 }

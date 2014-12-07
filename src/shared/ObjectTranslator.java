@@ -1,5 +1,6 @@
 package shared;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
@@ -64,18 +65,23 @@ public class ObjectTranslator {
 		return sc.recieve();
 	}
 
-	public void saveNote(String newNote) {
+	public String saveNote(int eventID, int userID, String newNote) {
+		note.setOverallID("createNote");
+		note.setCreatedBy(userID);
+		note.setEventID(eventID);
 		note.setText(newNote);
 		
 		String gsonString = gson.toJson(note);
-		sc.send(gsonString);		
+		sc.send(gsonString);
+		return sc.recieve();
 	}
 
 	public String delEvent(int eventID) {
-		event.setId(eventID);
-		event.setOverallID("deleteEvent");
+		simple.setId(eventID);
+//		simple.setUserId(userID);
+		simple.setOverallID("deleteEvent");
 		
-		String gsonString = gson.toJson(event);
+		String gsonString = gson.toJson(simple);
 		sc.send(gsonString);
 		return sc.recieve();
 	}
@@ -117,6 +123,20 @@ public class ObjectTranslator {
 		System.out.println("I OT:"+"USER ID:"+userID+"CAL ID:"+calID);
 		
 		String gsonString = gson.toJson(simple);
+		sc.send(gsonString);
+		return sc.recieve();
+	}
+
+	public String createEvent(int userID, String title, String desc, String loc, int calID, Timestamp startTimestamp, Timestamp endTimestamp) {
+		event.setOverallID("createEvent");
+		event.setCreatedby(userID);
+		event.setTitle(title);
+		event.setDescription(desc);
+		event.setLocation(loc);
+		event.setStartTimestamp(startTimestamp);
+		event.setEndTimestamp(endTimestamp);
+		event.setCalendarId(calID);
+		String gsonString = gson.toJson(event);
 		sc.send(gsonString);
 		return sc.recieve();
 	}

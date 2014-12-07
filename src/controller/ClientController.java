@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.Timestamp;
+
 import shared.Events;
 import shared.ObjectTranslator;
 import shared.User;
@@ -38,8 +40,8 @@ public class ClientController {
 		return ot.getNote(eventID);
 	}
 
-	public void saveNote(String newNote) {
-		ot.saveNote(newNote);		
+	public String saveNote(int eventID, int userID, String newNote) {
+		return ot.saveNote(eventID, userID, newNote);		
 	}
 
 	public String delEvent(int eventID) {
@@ -60,5 +62,9 @@ public class ClientController {
 
 	public String shareCal(int userID, int calID) {
 		return ot.shareCal(userID, calID);
+	}
+
+	public String createEvent(int userID, String title, String desc, String loc, int calID, Timestamp startTimestamp, Timestamp endTimestamp) {
+		return ot.createEvent(userID, title, desc, loc, calID, startTimestamp, endTimestamp);
 	}
 }

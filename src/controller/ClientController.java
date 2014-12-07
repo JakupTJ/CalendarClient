@@ -42,7 +42,23 @@ public class ClientController {
 		ot.saveNote(newNote);		
 	}
 
-	public void delEvent(int eventID) {
-		ot.delEvent(eventID);		
+	public String delEvent(int eventID) {
+		return ot.delEvent(eventID);		
+	}
+
+	public String createCal(String calName, int userID) {
+		return ot.createCal(calName, userID);		
+	}
+
+	public String getCalendar(int userid) {
+		return ot.getCalendar(userid);
+	}
+
+	public String deleteCal(int calID, int userID) {
+		return ot.deleteCal(calID, userID);
+	}
+
+	public String shareCal(int calID, int userID) {
+		return ot.shareCal(calID, userID);
 	}
 }

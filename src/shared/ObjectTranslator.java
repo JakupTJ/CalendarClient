@@ -14,6 +14,7 @@ public class ObjectTranslator {
 	Events event = new Events();
 	SimpleCall simple = new SimpleCall();
 	Note note = new Note();
+	Calendar cal = new Calendar();
 	Gson gson = new GsonBuilder().create();
 
 	public ObjectTranslator() {
@@ -70,12 +71,52 @@ public class ObjectTranslator {
 		sc.send(gsonString);		
 	}
 
-	public void delEvent(int eventID) {
+	public String delEvent(int eventID) {
 		event.setId(eventID);
 		event.setOverallID("deleteEvent");
 		
 		String gsonString = gson.toJson(event);
 		sc.send(gsonString);
+		return sc.recieve();
+	}
+
+	public String createCal(String calName, int userID) {
+		cal.setOverallID("createCalendar");
+		cal.setUserid(userID);
+		cal.setTitle(calName);
+		
+		String gsonString = gson.toJson(cal);
+		sc.send(gsonString);
+		return sc.recieve();
+		
+	}
+
+	public String getCalendar(int userid) {
+		cal.setOverallID("getCalendars");
+		cal.setUserid(userid);
+		
+		String gsonString = gson.toJson(cal);
+		sc.send(gsonString);
+		return sc.recieve();
+	}
+
+	public String deleteCal(int calID, int userID) {
+		cal.setOverallID("deleteCalendars");
+		cal.setUserid(userID);
+		cal.setCalendarid(calID);
+		String gsonString = gson.toJson(cal);
+		sc.send(gsonString);
+		return sc.recieve();
+	}
+
+	public String shareCal(int calID, int userID) {
+		simple.setOverallID("shareCalendar");
+		simple.setUserId(userID);
+		simple.setCalendarid(calID);
+		
+		String gsonString = gson.toJson(simple);
+		sc.send(gsonString);
+		return sc.recieve();
 	}
 
 }

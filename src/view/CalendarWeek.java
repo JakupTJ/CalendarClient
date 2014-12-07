@@ -37,11 +37,14 @@ public class CalendarWeek extends JPanel {
 	public static final String NEXT = "next";
 	public static final String GO = "go";
 	public static final String DAY = "day";
+	public static final String CALSET = "calSet";
+;
+
 
 	private static String days[] = { "MON", "TUE", "WED", "THU", "FRI", "SAT",
 			"SUN" };
-	private static int START_WEEK;
-	private static int START_YEAR;
+	public static int START_WEEK;
+	public static int START_YEAR;
 	
 
 	private JPanel quotePanel;
@@ -62,6 +65,7 @@ public class CalendarWeek extends JPanel {
 	private ActionController actionController;
 	private JLabel lblYear;
 	private JTextField yearTxt;
+	private JButton btnCalSettings;
 	
 
 	public CalendarWeek(ActionController actionController) {
@@ -153,16 +157,22 @@ public class CalendarWeek extends JPanel {
 		quotePanel = new JPanel();
 		quotePanel.setBorder(new MatteBorder(1, 1, 1, 1, Color.BLACK));
 		bottomPanel.add(quotePanel, BorderLayout.NORTH);
+		
+		btnCalSettings = new JButton("Calendar settings");
+		btnCalSettings.addActionListener(actionController);
+		btnCalSettings.setActionCommand(CALSET);
+		quotePanel.add(btnCalSettings);
 
 		qotdLbl = new JLabel("");
 		qotdLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		qotdLbl.setPreferredSize(new Dimension(0,20));
+//		qotdLbl.setPreferredSize(new Dimension(0,20));
+		qotdLbl.setVisible(true);
 		quotePanel.add(qotdLbl);
 	}
 
 	
 
-	private void insertdates(int week, int year) {
+	public void insertdates(int week, int year) {
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		cal.set(Calendar.WEEK_OF_YEAR, week);
 		cal.set(Calendar.YEAR, year);
@@ -221,33 +231,13 @@ public class CalendarWeek extends JPanel {
 
 		START_WEEK += nextWeek;
 	
-
-		if(START_WEEK>52) {
-			START_WEEK = 1;
-			START_YEAR++;
 			insertdates(START_WEEK, START_YEAR);
-		}
-		else if(START_WEEK< 1) {
-			START_WEEK = 52;
-			START_YEAR--;
-			insertdates(START_WEEK, START_YEAR);
-		}
+		
 		String stringWeek = String.valueOf(START_WEEK);
 		String stringYear = String.valueOf(START_YEAR);
 
 		weekTxt.setText(stringWeek);
 		yearTxt.setText(stringYear);
-	}
-	public void goWeek(int weeknumber, int year) {
-		System.out.println("her"+weeknumber + year);
-	
-			System.out.println(year);
-			insertdates(weeknumber, year);
-		
-	}
-	
-	public static int getSTART_YEAR() {
-		return START_YEAR;
 	}
 
 	public JPanel getCalendarPanel() {

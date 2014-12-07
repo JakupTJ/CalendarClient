@@ -52,7 +52,6 @@ public class ServerConnection {
 			decrypted = crypt(modifiedSentence.getBytes());
 			System.out.println("decrypted" + decrypted);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

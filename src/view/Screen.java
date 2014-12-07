@@ -15,7 +15,8 @@ public class Screen extends JFrame {
 	public static final String LOGIN = "login";
 	public static final String CALENDARDAY = "calendarDay";
 	public static final String CALENDARWEEK = "calendarWeek";
-	public static final String CREATEEVENT = "createEvent";
+	public static final String CALSETTINGS = "calSettings";
+
 	
 
 	private ActionController actionController;
@@ -24,7 +25,7 @@ public class Screen extends JFrame {
 	private Login login;
 	private CalendarDay calendarDay;
 	private CalendarWeek calendarWeek;
-	private CreateEvent createEvent;
+	private CalendarSettings calSettings;
 	
 
 	// no-argument constructor
@@ -44,13 +45,13 @@ public class Screen extends JFrame {
 		login = new Login(actionController);
 		calendarWeek = new CalendarWeek(actionController);
 		calendarDay = new CalendarDay(actionController);
-		createEvent = new CreateEvent(actionController);
+		calSettings = new CalendarSettings(actionController);
 		
 		// adding JPanels
 		contentPane.add(login, LOGIN);
 		contentPane.add(calendarWeek, CALENDARWEEK);
 		contentPane.add(calendarDay, CALENDARDAY);
-		contentPane.add(createEvent, CREATEEVENT);
+		contentPane.add(calSettings, CALSETTINGS);
 
 	}
 
@@ -70,8 +71,8 @@ public class Screen extends JFrame {
 		return login;
 	}
 
-	public CreateEvent getCreateEvent() {
-		return createEvent;
+	public CalendarSettings getCalSettings() {
+		return calSettings;
 	}
 
 }

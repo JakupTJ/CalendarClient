@@ -5,18 +5,13 @@ import java.awt.event.ActionListener;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.JOptionPane;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import shared.Calendar;
 import shared.Events;
 import shared.Forecast;
 import shared.Note;
-import shared.QOTD;
-import shared.SimpleCall;
 import shared.User;
 import view.CalendarDay;
 import view.CalendarSettings;
@@ -29,8 +24,7 @@ public class ActionController implements ActionListener {
 	
 	private Screen screen;
 	private ClientController cc;
-	public User currentUser;
-	private Events events;
+	private User currentUser;
 	private ArrayList<Events> eventsArray;
 	private ArrayList<Calendar> calendarArray;
 	private Gson gson;
@@ -43,7 +37,6 @@ public class ActionController implements ActionListener {
 		this.screen = screen;
 		this.cc = new ClientController();
 		this.currentUser = new User();
-		this.events = new Events();
 		this.eventsArray = new ArrayList<>();
 		this.calendarArray = new ArrayList<>();
 		this.gson = new GsonBuilder().create();
@@ -70,19 +63,9 @@ public class ActionController implements ActionListener {
 
 				screen.show(Screen.CALENDARWEEK);
 				
-				String prepareEvents = cc.getEvents(currentUser.getUserid());
-				Events[] event = gson.fromJson(prepareEvents, Events[].class);
+				refreshEvents();
 				
-				for(int i = 0; i < event.length; i++) {
-					eventsArray.add(event[i]);
-				}
-				
-				String prepareCalendar = cc.getCalendar(currentUser.getUserid());
-				Calendar [] calendar = gson.fromJson(prepareCalendar, Calendar[].class);
-				
-				for(int i = 0; i < calendar.length; i++) {
-					calendarArray.add(calendar[i]);
-				}
+				refreshCalendars();
 			}
 		}
 		
@@ -120,7 +103,7 @@ public class ActionController implements ActionListener {
 			}
 		}
 		else if (cmd.equals(CalendarWeek.CALSET)) {
-//			screen.getCalSettings().removeTable();
+			refreshCalendars();
 			insertCalendars();
 			screen.show(Screen.CALSETTINGS);
 		}
@@ -130,10 +113,12 @@ public class ActionController implements ActionListener {
 			int userID = currentUser.getUserid();
 			String calReturn = cc.createCal(calName,userID);
 			if(calReturn.equals("calendar added")){
+				screen.getCalSettings().removeTable();
+				screen.getCalSettings().repaint();
 				refreshCalendars();
-//				insertCalendars();
-				screen.show(Screen.CALSETTINGS);
-			}
+				JOptionPane.showMessageDialog(null, "Calendar created");
+				}
+			screen.show(Screen.CALENDARWEEK);
 		}
 		else if (cmd.equals(CalendarSettings.DELETECAL)) {
 			int calID = Integer.parseInt(JOptionPane.showInputDialog(null,
@@ -141,19 +126,27 @@ public class ActionController implements ActionListener {
 			int userID = currentUser.getUserid();
 			String calReturn = cc.deleteCal(calID, userID);
 			if(calReturn.equals("calendar deleted")) {
-//				screen.getCalSettings().removeTable();
+				JOptionPane.showMessageDialog(null, "Calendar deleted");
+				screen.getCalSettings().removeTable();
+				screen.getCalSettings().repaint();
 				refreshCalendars();
-//				insertCalendars();
-//				screen.show(Screen.CALSETTINGS);
 			}
+			if (calReturn.equals("calendar is permanent!")) {
+				JOptionPane.showMessageDialog(null, "Cant delete CBS Calendar");
+			}
+			
 		}
 			
 		else if (cmd.equals(CalendarSettings.SHARECAL)) {
-			int calID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"What calendar do you want to share?", null));
-			int userID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"Add user to calendar", null));
-			cc.shareCal(userID, calID);
+			int calID = Integer.parseInt(JOptionPane.showInputDialog(null,"What calendar do you want to share?", null));
+			int userID = Integer.parseInt(JOptionPane.showInputDialog(null,"Add user to calendar", null));
+			
+			String shareCal = cc.shareCal(userID, calID);
+			
+			if(shareCal.equals("calendar_shared")){
+				JOptionPane.showMessageDialog(null, "Calendar shared");
+			}
+			
 		}
 		else if(cmd.equals(CalendarSettings.CALWEEK)){
 		screen.show(Screen.CALENDARWEEK);
@@ -171,12 +164,7 @@ public class ActionController implements ActionListener {
 			screen.show(Screen.CREATEEVENT);
 		}
 		else if (cmd.equals(CalendarDay.NOTE)) {
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"What event do you need notes for?", null));
-			int i = 0;
-			try{
-			i = eventID; 
-
+			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"What event do you need notes for?", null));
 			String n = cc.getNote(eventID);
 			Note note = gson.fromJson(n, Note.class);
 			screen.getCalendarDay().getNotePanel().setVisible(true);
@@ -185,18 +173,12 @@ public class ActionController implements ActionListener {
 			screen.getCalendarDay().getSetTxtField().setVisible(true);
 			screen.getCalendarDay().getBtnDelNote().setVisible(true);
 			screen.getCalendarDay().getNoteLbl().setText(note.getText());
-
-			}
-			catch(NumberFormatException nfe){
-				JOptionPane.showMessageDialog( screen, "You must enter a number");
-			}
 		}
 		
 		else if (cmd.equals(CalendarDay.SETNOTE)) {
 			String newNote = screen.getCalendarDay().getSetTxtField().getText();
 			int userID = currentUser.getUserid();
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"add to what event?", null));
+			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"add to what event?", null));
 			
 			cc.saveNote(eventID, userID, newNote);
 			String note = cc.getNote(eventID);
@@ -206,14 +188,13 @@ public class ActionController implements ActionListener {
 		}
 		else if (cmd.equals(CalendarDay.DELNOTE)) {
 			String delNote = "";
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"From which event?", null));
+			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"From which event?", null));
 			int userID = currentUser.getUserid();
-			cc.saveNote(eventID, userID, delNote);
 			
+			cc.saveNote(eventID, userID, delNote);
+
 			String note = cc.getNote(eventID);
 			Note n = gson.fromJson(note, Note.class);
-
 			screen.getCalendarDay().getNoteLbl().setText(n.getText());
 		}
 		
@@ -242,28 +223,32 @@ public class ActionController implements ActionListener {
 			String desc = screen.getCreateEvent().getTxtDescription().getText();
 			String loc = screen.getCreateEvent().getTxtLocation().getText();
 			
-			int calID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"What calendar do you want to add the event?", null));
+			int calID = Integer.parseInt(JOptionPane.showInputDialog(null,"What calendar do you want to add the event?", null));
 			int userID = currentUser.getUserid();
 			
 			String eventadded = cc.createEvent(userID, title, desc, loc, calID, startTimestamp, endTimestamp);
 			if(eventadded.equals("eventCreated")){
+				screen.getCreateEvent().clearFields();
+				JOptionPane.showMessageDialog(null, "Event created!");
+				screen.show(Screen.CALENDARDAY);
 				refreshEvents();
+				insertEvents(selectedMonth, selectedDay);
 			}
 		}
 		
 		else if (cmd.equals(CreateEvent.DELEVENT)) {
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"What event do you want to delete?", null));
-//			int userID = currentUser.getUserid();
+			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"What event do you want to delete?", null));
 			String calReturn = cc.delEvent(eventID);
 			if(calReturn.equals("calendar deleted")) {
+				JOptionPane.showMessageDialog(null, "Event deleted!");
+				screen.show(Screen.CALENDARWEEK);
 				refreshEvents();
 			}
 		}
 		else if (cmd.equals(CreateEvent.DAYVIEW)) {
-			
-			screen.show(Screen.CALENDARWEEK);
+			refreshEvents();
+			insertEvents(selectedMonth, selectedDay);
+			screen.show(Screen.CALENDARDAY);
 		}
 		
 	
@@ -389,6 +374,9 @@ public class ActionController implements ActionListener {
 		screen.getCalSettings().refreshEvents(data, header);
 	}
 	public void refreshEvents() {
+		
+		eventsArray.removeAll(eventsArray);
+		
 		String prepareEvents = cc.getEvents(currentUser.getUserid());
 		Events[] event = gson.fromJson(prepareEvents, Events[].class);
 		
@@ -397,6 +385,8 @@ public class ActionController implements ActionListener {
 		}
 	}
 	public void refreshCalendars() {
+		
+		calendarArray.removeAll(calendarArray);
 		
 		String prepareCalendar = cc.getCalendar(currentUser.getUserid());
 		Calendar [] calendar = gson.fromJson(prepareCalendar, Calendar[].class);

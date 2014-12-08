@@ -4,15 +4,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import controller.ActionController;
 import javax.swing.SwingConstants;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.Font;
 
 public class CreateEvent extends JPanel {
@@ -21,7 +14,6 @@ public class CreateEvent extends JPanel {
 	public final static String DELEVENT = "delEvent";
 	public final static String DAYVIEW = "dayView";
 
-	private Screen screen;
 	private ActionController actionController;
 
 	private JPanel eventPanel;
@@ -151,6 +143,17 @@ public class CreateEvent extends JPanel {
 
 
 	}// end constructor
+	
+public void clearFields(){
+	txtTitle.setText("");
+	txtEndHour.setText("");
+	txtStartHour.setText("");
+	txtDescription.setText("");
+	txtLocation.setText("");
+	txtStartMin.setText("");
+	txtEndMin.setText("");	
+		
+	}
 
 
 	public JTextField getTxtTitle() {

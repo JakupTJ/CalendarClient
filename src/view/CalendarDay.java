@@ -1,13 +1,10 @@
 package view;
 
 import javax.swing.JPanel;
-
 import controller.ActionController;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,16 +12,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.CompoundBorder;
-
 import java.awt.SystemColor;
-
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
-import javax.swing.plaf.multi.MultiLabelUI;
-
 import java.awt.Color;
 
 public class CalendarDay extends JPanel{

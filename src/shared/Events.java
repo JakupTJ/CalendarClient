@@ -15,7 +15,6 @@ public class Events  implements java.io.Serializable {
     private String description;
     private String title;
     private String location;
-    private Timestamp ts;
     private ArrayList<String> start;
     private ArrayList<String> end;
     private Timestamp startTimestamp;

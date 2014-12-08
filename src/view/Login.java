@@ -2,16 +2,11 @@ package view;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-
 import controller.ActionController;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;

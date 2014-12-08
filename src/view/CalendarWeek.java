@@ -1,34 +1,20 @@
 package view;
 
-import javax.management.StringValueExp;
-import javax.swing.BorderFactory;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.LayoutManager;
-
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
-
 import controller.ActionController;
-
-import java.awt.FlowLayout;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
+
 
 public class CalendarWeek extends JPanel {
 
@@ -41,8 +27,7 @@ public class CalendarWeek extends JPanel {
 ;
 
 
-	private static String days[] = { "MON", "TUE", "WED", "THU", "FRI", "SAT",
-			"SUN" };
+	private static String days[] = { "MON", "TUE", "WED", "THU", "FRI", "SAT","SUN" };
 	public static int START_WEEK;
 	public static int START_YEAR;
 	

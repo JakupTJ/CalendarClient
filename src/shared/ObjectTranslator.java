@@ -1,12 +1,8 @@
 package shared;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import controller.ClientController;
 
 public class ObjectTranslator {
 

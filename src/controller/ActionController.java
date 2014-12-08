@@ -15,6 +15,8 @@ import shared.Calendar;
 import shared.Events;
 import shared.Forecast;
 import shared.Note;
+import shared.QOTD;
+import shared.SimpleCall;
 import shared.User;
 import view.CalendarDay;
 import view.CalendarSettings;
@@ -61,9 +63,9 @@ public class ActionController implements ActionListener {
 			if (!recieve.equals("invalid")) {
 				
 				currentUser = (User) gson.fromJson(recieve, User.class);
-								
-//				qotd = c.getQotd();
-				String qotd = "HEJ AGAGARDGAEDRGAEHARTHARTHARTHSRTHSTHDSFTHSFDH";
+
+				
+				String qotd = cc.getQotd();
 				screen.getCalendarWeek().getQotdLbl().setText(qotd);
 
 				screen.show(Screen.CALENDARWEEK);

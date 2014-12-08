@@ -57,10 +57,10 @@ public class ObjectTranslator {
 	}
 
 	public String getNote(int eventID) {
-		simple.setId(eventID);
-		simple.setOverallID("getNote");
+		note.setEventID(eventID);
+		note.setOverallID("getNote");
 		
-		String gsonString = gson.toJson(simple);
+		String gsonString = gson.toJson(note);
 		sc.send(gsonString);
 		return sc.recieve();
 	}
@@ -78,7 +78,6 @@ public class ObjectTranslator {
 
 	public String delEvent(int eventID) {
 		simple.setId(eventID);
-//		simple.setUserId(userID);
 		simple.setOverallID("deleteEvent");
 		
 		String gsonString = gson.toJson(simple);

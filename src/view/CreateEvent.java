@@ -46,84 +46,85 @@ public class CreateEvent extends JPanel {
 		setLayout(null);
 
 		lblShow = new JLabel("Create Event");
-		lblShow.setBounds(418, 0, 73, 16);
+		lblShow.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblShow.setBounds(422, 0, 106, 20);
 		lblShow.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblShow);
 
 		eventPanel = new JPanel();
-		eventPanel.setBounds(0, 0, 950, 285);
+		eventPanel.setBounds(0, 0, 950, 287);
 		add(eventPanel);
 		eventPanel.setLayout(null);
 		
 		lblEventInformation = new JLabel("Event information:");
 		lblEventInformation.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC,13));
-		lblEventInformation.setBounds(48, 29, 120, 16);
+		lblEventInformation.setBounds(48, 13, 120, 16);
 		eventPanel.add(lblEventInformation);
 
 		txtTitle = new JTextField("");
-		txtTitle.setBounds(178, 60, 150, 30);
+		txtTitle.setBounds(178, 44, 150, 30);
 		txtTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		eventPanel.add(txtTitle);
 
 
 		txtDescription = new JTextField("");
 		txtDescription.setHorizontalAlignment(SwingConstants.CENTER);
-		txtDescription.setBounds(178, 99, 150, 30);
+		txtDescription.setBounds(178, 83, 150, 30);
 		eventPanel.add(txtDescription);
 
 		txtLocation = new JTextField("");
 		txtLocation.setHorizontalAlignment(SwingConstants.CENTER);
-		txtLocation.setBounds(178, 136, 150, 30);
+		txtLocation.setBounds(178, 120, 150, 30);
 		eventPanel.add(txtLocation);
 
 		txtStartHour = new JTextField("");
 		txtStartHour.setHorizontalAlignment(SwingConstants.CENTER);
-		txtStartHour.setBounds(178, 179, 56, 30);
+		txtStartHour.setBounds(178, 163, 56, 30);
 		eventPanel.add(txtStartHour);
 
 		txtEndHour = new JTextField("");
 		txtEndHour.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEndHour.setBounds(178, 222, 56, 30);
+		txtEndHour.setBounds(178, 206, 56, 30);
 		eventPanel.add(txtEndHour);
 
 		lblTitle = new JLabel("Title:");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setBounds(48, 67, 105, 16);
+		lblTitle.setBounds(48, 51, 105, 16);
 		eventPanel.add(lblTitle);
 
 		lblDescription = new JLabel("Description:");
 		lblDescription.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDescription.setBounds(48, 106, 105, 16);
+		lblDescription.setBounds(48, 90, 105, 16);
 		eventPanel.add(lblDescription);
 
 		lblLocation = new JLabel("Location:");
 		lblLocation.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLocation.setBounds(48, 143, 105, 16);
+		lblLocation.setBounds(48, 127, 105, 16);
 		eventPanel.add(lblLocation);
 
 		lblStartTime = new JLabel("Start[HH:MM]:");
 		lblStartTime.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStartTime.setBounds(48, 186, 105, 16);
+		lblStartTime.setBounds(48, 170, 105, 16);
 		eventPanel.add(lblStartTime);
 
 		lblEndtime = new JLabel("End time[HH:MM]:");
 		lblEndtime.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEndtime.setBounds(48, 229, 105, 16);
+		lblEndtime.setBounds(48, 213, 105, 16);
 		eventPanel.add(lblEndtime);
 		
 		txtStartMin = new JTextField("");
 		txtStartMin.setHorizontalAlignment(SwingConstants.CENTER);
-		txtStartMin.setBounds(272, 179, 56, 30);
+		txtStartMin.setBounds(272, 163, 56, 30);
 		eventPanel.add(txtStartMin);
 		
 		txtEndMin = new JTextField("");
 		txtEndMin.setHorizontalAlignment(SwingConstants.CENTER);
-		txtEndMin.setBounds(272, 222, 56, 30);
+		txtEndMin.setBounds(272, 206, 56, 30);
 		eventPanel.add(txtEndMin);
 
 		bottomPanel = new JPanel();
-		bottomPanel.setBounds(0, 285, 950, 35);
-		add(bottomPanel);
+		bottomPanel.setBounds(12, 239, 950, 35);
+		eventPanel.add(bottomPanel);
 
 		btnAddEvent = new JButton("Create Event");
 		btnAddEvent.addActionListener(actionController);

@@ -16,6 +16,7 @@ import java.awt.SystemColor;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
+import java.awt.Font;
 
 public class CalendarDay extends JPanel{
 	
@@ -36,12 +37,14 @@ public class CalendarDay extends JPanel{
 	private JButton btnNote;
 	private JButton btnSet;
 	private JButton btnDelNote;
-	private JTextArea forecastTxt;
 	private JTextArea noteTxt;
 	private JTextField setTxtField;
 	private JPanel bottomPanel;
 	private JPanel infoPanel;
 	private JPanel notePanel;
+	private JPanel ForecastPanel;
+	private JLabel lblDesc;
+	private JLabel lblLblcelc;
 	
 	public CalendarDay (ActionController actionController) {
 		this.actionController = actionController;
@@ -49,6 +52,7 @@ public class CalendarDay extends JPanel{
 		setLayout(new BorderLayout());
 		
 		lblDayView = new JLabel("Day view");
+		lblDayView.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblDayView.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblDayView, BorderLayout.NORTH);
 		
@@ -100,12 +104,15 @@ public class CalendarDay extends JPanel{
 		bottomPanel.add(infoPanel, BorderLayout.NORTH);
 		infoPanel.setLayout(new GridLayout(0, 4, 0, 0));
 		
-		forecastTxt = new JTextArea("");
-		forecastTxt.setEditable(false);
-		forecastTxt.setWrapStyleWord(true);
-		forecastTxt.setLineWrap(true);
-		forecastTxt.setBackground(SystemColor.control);
-		infoPanel.add(forecastTxt);
+		ForecastPanel = new JPanel();
+		infoPanel.add(ForecastPanel);
+		ForecastPanel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		lblDesc = new JLabel("New label");
+		ForecastPanel.add(lblDesc);
+		
+		lblLblcelc = new JLabel("lblCelc");
+		ForecastPanel.add(lblLblcelc);
 		
 		btnSet = new JButton("Create new note");
 		infoPanel.add(btnSet);
@@ -169,13 +176,6 @@ public class CalendarDay extends JPanel{
 	public JPanel getActivePanel() {
 		return activePanel;
 	}
-	public JTextArea getForecastTxt() {
-		return forecastTxt;
-	}
-
-	public void setForecastTxt(JTextArea forecastTxt) {
-		this.forecastTxt = forecastTxt;
-	}
 
 	public void setActivePanel(JPanel activePanel) {
 		this.activePanel = activePanel;
@@ -227,6 +227,30 @@ public class CalendarDay extends JPanel{
 
 	public void setBtnDelNote(JButton btnDelNote) {
 		this.btnDelNote = btnDelNote;
+	}
+
+
+
+	public void setLblDesc(JLabel lblDesc) {
+		this.lblDesc = lblDesc;
+	}
+
+
+
+	public void setLblLblcelc(JLabel lblLblcelc) {
+		this.lblLblcelc = lblLblcelc;
+	}
+
+
+
+	public JLabel getLblDesc() {
+		return lblDesc;
+	}
+
+
+
+	public JLabel getLblLblcelc() {
+		return lblLblcelc;
 	}
 
 }

@@ -36,7 +36,7 @@ public class Forecast implements Serializable{
 		this.overallID = overallID;
 	}
 	public String toString() {
-		return date + "Today's forecast" +  "degrees: " + celsius + desc;
+		return "Today's forecast" +  "degrees: " + celsius + desc;
 	}
 }
 

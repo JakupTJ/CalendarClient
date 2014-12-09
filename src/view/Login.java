@@ -14,26 +14,27 @@ import java.awt.Font;
 public class Login extends JPanel {
 
 	private ActionController actionController;
+	private JLabel topLabel;
 	private JTextArea txtremail;
 	private JPasswordField passwordField;
 	private JButton btnLogin;
-	private JLabel lblBackground;
 	private JButton btnQuitBcbs;
 
 	public static final String LOGINSUBMIT = "loginsubmit";
 
 	public Login(ActionController actionController) {
 		this.actionController = actionController;
-		setLayout(null);
 		setSize(Screen.WIDTH, Screen.HEIGHT);
+		setLayout(null);
 
-		JLabel label = new JLabel("Login");
-		label.setFont(new Font("Copperplate Gothic Bold", Font.PLAIN, 16));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(404, 11, 100, 20);
-		add(label);
 
-		txtremail = new JTextArea("dafr13ab@student.cbs.dk");
+		topLabel = new JLabel("Login");
+		topLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		topLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		topLabel.setBounds(404, 11, 44, 20);
+		add(topLabel);
+
+		txtremail = new JTextArea("Insert your CBS-email address");
 		txtremail.setBounds(329, 80, 250, 29);
 		add(txtremail);
 
@@ -62,23 +63,19 @@ public class Login extends JPanel {
 			}
 		});
 
-		passwordField = new JPasswordField("123456");
+		passwordField = new JPasswordField("");
 		passwordField.setBounds(329, 122, 250, 29);
 		add(passwordField);
 
-		btnLogin = new JButton("Login to BCBS");
+		btnLogin = new JButton("Login to CBS Calendar");
 		btnLogin.addActionListener(actionController);
 		btnLogin.setActionCommand(LOGINSUBMIT);
-		btnLogin.setBounds(388, 176, 132, 26);
+		btnLogin.setBounds(388, 176, 159, 25);
 		add(btnLogin);
 
-		btnQuitBcbs = new JButton("Quit BCBS");
-		btnQuitBcbs.setBounds(405, 221, 98, 26);
+		btnQuitBcbs = new JButton("Quit CBS Calendar");
+		btnQuitBcbs.setBounds(405, 221, 137, 25);
 		add(btnQuitBcbs);
-
-		lblBackground = new JLabel("");
-		lblBackground.setBounds(0, 0, 908, 260);
-		add(lblBackground);
 	}
 
 	public JTextArea getTxtremail() {

@@ -8,7 +8,7 @@ public class Main {
 		
 		Screen screen = new Screen();
 		
-		screen.setTitle("CBScalendar");
+		screen.setTitle("CBS calendar v2");
         screen.setLocationRelativeTo(null);
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         screen.setVisible(true);

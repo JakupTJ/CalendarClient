@@ -66,12 +66,14 @@ public class CalendarWeek extends JPanel {
 		// Add headerPanel to top panel
 		headerPanel = new JPanel(new GridLayout(0, 7));
 		headerPanel.setPreferredSize(new Dimension(10, 35));
+		headerPanel.setBorder(new MatteBorder(0, 20, 0, 20, (Color) null));
 //		headerPanel.setBackground(Color.GRAY);
 		headerPanel.setVisible(true);
 		add(headerPanel, BorderLayout.NORTH);
 
 		for (String day : days) {
 			JLabel weekColumn = new JLabel(("" + day), SwingConstants.CENTER);
+//			weekColumn.setBorder(new MatteBorder(0, 1, 0, 1, Color.BLACK));
 			headerPanel.add(weekColumn, new GridLayout(2, 7));
 		}
 

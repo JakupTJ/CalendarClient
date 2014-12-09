@@ -32,6 +32,7 @@ public class ActionController implements ActionListener {
 	private int selectedDay;
 	private int selectedMonth;
 	private int selectedYear;
+	private int eventID;
 
 	public ActionController(Screen screen) {
 		this.screen = screen;
@@ -134,7 +135,7 @@ public class ActionController implements ActionListener {
 			if (calReturn.equals("calendar is permanent!")) {
 				JOptionPane.showMessageDialog(null, "Cant delete CBS Calendar");
 			}
-			
+			screen.show(Screen.CALENDARWEEK);
 		}
 			
 		else if (cmd.equals(CalendarSettings.SHARECAL)) {
@@ -157,6 +158,7 @@ public class ActionController implements ActionListener {
 			screen.getCalendarDay().getNoteLbl().setVisible(false);
 			screen.getCalendarDay().getBtnSet().setVisible(false);
 			screen.getCalendarDay().getSetTxtField().setVisible(false);
+			screen.getCalendarDay().getBtnDelNote().setVisible(false);
 			screen.getCalendarDay().getNoteLbl().setText("");
 				screen.show(Screen.CALENDARWEEK);
 			}
@@ -164,7 +166,7 @@ public class ActionController implements ActionListener {
 			screen.show(Screen.CREATEEVENT);
 		}
 		else if (cmd.equals(CalendarDay.NOTE)) {
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"What event do you need notes for?", null));
+			eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"What event do you need notes for?", null));
 			String n = cc.getNote(eventID);
 			Note note = gson.fromJson(n, Note.class);
 			screen.getCalendarDay().getNotePanel().setVisible(true);
@@ -178,7 +180,6 @@ public class ActionController implements ActionListener {
 		else if (cmd.equals(CalendarDay.SETNOTE)) {
 			String newNote = screen.getCalendarDay().getSetTxtField().getText();
 			int userID = currentUser.getUserid();
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"add to what event?", null));
 			
 			cc.saveNote(eventID, userID, newNote);
 			String note = cc.getNote(eventID);
@@ -188,7 +189,6 @@ public class ActionController implements ActionListener {
 		}
 		else if (cmd.equals(CalendarDay.DELNOTE)) {
 			String delNote = "";
-			int eventID = Integer.parseInt(JOptionPane.showInputDialog(null,"From which event?", null));
 			int userID = currentUser.getUserid();
 			
 			cc.saveNote(eventID, userID, delNote);
@@ -304,11 +304,12 @@ public class ActionController implements ActionListener {
 				
 				Forecast fc = gson.fromJson(weather, Forecast.class);
 				if( fc != null) {
-				screen.getCalendarDay().getForecastTxt().setText(fc.toString());
+				screen.getCalendarDay().getLblDesc().setText("Forecast: " + fc.getDesc());
+				screen.getCalendarDay().getLblLblcelc().setText("Celsius: " + fc.getCelsius());
 				screen.show(Screen.CALENDARDAY);
 				}
 				else {
-					screen.getCalendarDay().getForecastTxt().setText("Forecast not available");
+					screen.getCalendarDay().getLblDesc().setText("Forecast not available");
 					screen.show(Screen.CALENDARDAY);
 
 				}

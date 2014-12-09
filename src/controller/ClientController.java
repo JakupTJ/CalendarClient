@@ -9,6 +9,13 @@ public class ClientController {
 	public ClientController() {
 		ot = new ObjectTranslator();
 	}
+	
+	/**
+	 * This class sorts all the methods that 
+	 * the class ActionsController passes down
+	 * 
+	 * Makes it possible to add additional code for future development
+	 */
 
 	public String checkLog(String email, String password) {
 		System.out.println(email + password);

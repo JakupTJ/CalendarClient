@@ -10,6 +10,11 @@ public class ServerConnection {
 
 	private Socket clientSocket;
 	private DataOutputStream outToServer;
+	
+	/**
+	 * The methods that establish the communication with the server
+	 * and receives the answer
+	 */
 
 	public void connect() {
 		try {
@@ -57,7 +62,12 @@ public class ServerConnection {
 
 		return decrypted;
 	}
-
+	
+	/**
+	 * Encrypts the information the the clients sends
+	 * @param gsonString
+	 * @return encrypted message
+	 */
 	public byte[] encryption(String gsonString) {
 		byte[] input = gsonString.getBytes();
 		byte key = (byte) 3.014;
@@ -67,6 +77,11 @@ public class ServerConnection {
 		return encrypted;
 	}
 	
+	/**
+	 * decrypts the answer from the server
+	 * @param b
+	 * @return decrypted answer
+	 */
 	public String crypt(byte[] b)
 	{
 //		Defines the decryption value of the byte

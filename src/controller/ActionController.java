@@ -29,20 +29,29 @@ public class ActionController implements ActionListener {
 	private ArrayList<Calendar> calendarArray;
 	private Gson gson;
 	
+	//Global variables
 	private int selectedDay;
 	private int selectedMonth;
 	private int selectedYear;
 	private int eventID;
-
+	
+	//Constructor
 	public ActionController(Screen screen) {
 		this.screen = screen;
 		this.cc = new ClientController();
 		this.currentUser = new User();
 		this.eventsArray = new ArrayList<>();
 		this.calendarArray = new ArrayList<>();
-		this.gson = new GsonBuilder().create();
-		
+		this.gson = new GsonBuilder().create();	
 	}
+	
+	/**
+	 * This class handels all the action events activated from the JPanels Uses
+	 * the method getActionCommand to differentiate between the various action
+	 * commands
+	 */
+	
+	//Action listeners for Login panel
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		
@@ -317,6 +326,13 @@ public class ActionController implements ActionListener {
 			}
 		
 		}
+	
+	/** 
+	 * Gets the events from eventsArray and adds it to the JTable
+	 * @param iMonth is the clicked month
+	 * @param iDay is the clicked day
+	 */
+	
 	private void insertEvents(int iMonth, int iDay) {
 		
 		// Check to see how many columns we need to generate
@@ -356,6 +372,10 @@ public class ActionController implements ActionListener {
 		
 		screen.getCalendarDay().refreshEvents(data, header);
 	}
+	
+	/**
+	 *  Creates a 2D object and gets the calendar information and adds it to JTable
+	 */
 	private void insertCalendars() {
 		
 		String [] header = {"Cal ID", "Title", "Created by"};
@@ -374,6 +394,10 @@ public class ActionController implements ActionListener {
 		
 		screen.getCalSettings().refreshEvents(data, header);
 	}
+	
+	/**
+	 * Updates the events array 
+	 */
 	public void refreshEvents() {
 		
 		eventsArray.removeAll(eventsArray);
@@ -385,6 +409,9 @@ public class ActionController implements ActionListener {
 			eventsArray.add(event[i]);
 		}
 	}
+	/**
+	 * Updates the Calendars array
+	 */
 	public void refreshCalendars() {
 		
 		calendarArray.removeAll(calendarArray);

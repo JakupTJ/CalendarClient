@@ -6,6 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		//Start application
 		Screen screen = new Screen();
 		
 		screen.setTitle("CBS calendar v2");
